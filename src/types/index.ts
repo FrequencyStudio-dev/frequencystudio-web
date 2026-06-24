@@ -4,9 +4,10 @@ export interface Project {
   category: string;
   year: string;
   description: string;
-  tags: string[];
+  url: string;
   accentColor: string;
   index: string;
+  image: string;
 }
 
 export interface Service {
