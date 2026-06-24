@@ -1,0 +1,31 @@
+export interface Project {
+  id: string;
+  title: string;
+  category: string;
+  year: string;
+  description: string;
+  tags: string[];
+  accentColor: string;
+  index: string;
+}
+
+export interface Service {
+  title: string;
+  description: string;
+  details: string[];
+}
+
+export interface Tool {
+  title: string;
+  description: string;
+  status: "próximamente" | "disponible" | "beta";
+  icon: string;
+}
+
+export interface LabPost {
+  title: string;
+  category: string;
+  date: string;
+  excerpt: string;
+  readTime: string;
+}
