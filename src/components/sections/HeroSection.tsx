@@ -3,10 +3,7 @@ import { AudioGrid } from "@/components/ui/AudioGrid";
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-base">
-      {/* Animated grid background */}
-      <div className="absolute inset-0">
-        <AudioGrid />
-      </div>
+      
 
       {/* Radial glow */}
       <div
@@ -16,15 +13,7 @@ export function HeroSection() {
             "radial-gradient(ellipse 60% 50% at 50% 80%, rgba(147, 64, 255, 0.08) 0%, transparent 70%)",
         }}
       />
-
-      {/* Corner coordinates decoration */}
-      <div className="absolute top-24 left-6 lg:left-12 font-mono text-label text-ink-dim/40">
-        40.7128° N, 74.0060° W
-      </div>
-      <div className="absolute top-24 right-6 lg:right-12 font-mono text-label text-ink-dim/40 text-right">
-        Studio v1.0
-      </div>
-
+     
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 pt-40 w-full">
         {/* Label row */}
@@ -33,7 +22,7 @@ export function HeroSection() {
           <span className="font-mono text-label text-ink-dim uppercase tracking-[0.2em]">
             Diseño & Desarrollo
           </span>
-          <div className="h-px w-16 bg-violet/30" />
+          <div className="h-px w-10 bg-violet/30" />
           <span className="font-mono text-label text-ink-dim uppercase tracking-[0.2em]">
             Proyectos Creativos
           </span>
@@ -41,30 +30,21 @@ export function HeroSection() {
 
         {/* Headline */}
         <h1 className="font-display text-display-2xl text-ink leading-[0.93] tracking-[-0.03em] max-w-5xl mb-8 lg:mb-10">
-          Webs y herramientas{" "}
+          Soluciones digitales{" "}
           <br className="hidden lg:block" />
           para{" "}
-          <span className="text-gradient">músicos</span>
+          <span className="text-violet">artistas</span>
           {", "}
           <br className="hidden lg:block" />
-          artistas y{" "}
-          <span
-            className="relative inline-block"
-            style={{
-              WebkitTextStroke: "1px rgba(147,64,255,0.6)",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            creadores.
-          </span>
+           y proyectos{" "}
+          <span className="text-violet">creativos</span>
         </h1>
 
         {/* Subheadline + scroll cue */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <p className="text-ink-muted text-body-lg max-w-xl leading-relaxed">
-            Un estudio digital en la intersección entre el arte, la música y la
-            tecnología. Construimos experiencias digitales que amplifican proyectos
-            creativos.
+            Desarrollamos sitios web, herramientas y productos digitales que ayudan a 
+            construir y escalar proyectos creativos.
           </p>
 
           <div className="flex items-center gap-6">
@@ -99,7 +79,7 @@ export function HeroSection() {
         {/* Bottom strip */}
         <div className="mt-16 lg:mt-20 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-8">
-            {["Diseño Web", "Herramientas Digitales", "Experiencias Interactivas"].map(
+            {["Desarrollo Web", "Diseño de Sistemas", "Productos digitales"].map(
               (item) => (
                 <span
                   key={item}
