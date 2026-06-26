@@ -6,25 +6,19 @@ const services: Service[] = [
     title: "Sitios Web",
     description:
       "Webs personalizadas construidas desde cero. Diseño y desarrollo a medida para proyectos creativos que necesitan presencia digital sólida y diferenciada.",
-    details: ["Diseño personalizado", "Desarrollo Next.js", "CMS integrado", "SEO técnico"],
+    details: ["Diseño personalizado", "Optimización de rendimiento", "SEO técnico"],
   },
   {
     title: "Landing Pages de Lanzamiento",
     description:
       "Páginas de alto impacto para lanzamientos de discos, proyectos y eventos. Diseñadas para convertir y crear expectativa desde el primer scroll.",
-    details: ["Diseño en 72h", "Pre-save / Pre-venta", "Analytics", "Email capture"],
+    details: ["Diseño en 72h", "Pre-save / Pre-venta", "Seguimiento de resultados", "Construcción de audiencia"],
   },
   {
     title: "Herramientas Digitales",
     description:
-      "Aplicaciones y utilidades a medida para el flujo de trabajo creativo. Automatizaciones, dashboards y kits que ahorran tiempo y amplifican el alcance.",
-    details: ["Automatización", "Integraciones API", "Dashboards", "Workflows"],
-  },
-  {
-    title: "Presencia Digital Completa",
-    description:
-      "Estrategia y ejecución de presencia digital para artistas y proyectos creativos. Desde la identidad hasta cada punto de contacto digital.",
-    details: ["Estrategia digital", "Identidad web", "Media Kit", "Redes sociales"],
+      "Herramientas digitales creadas para las necesidades reales de cada proyecto. Menos tareas repetitivas, más tiempo para crear.",
+    details: ["Automatización", "Integraciones", "Paneles de gestión", "Procesos personalizados"],
   },
 ];
 
@@ -73,16 +67,16 @@ export function ServicesSection() {
   return (
     <section id="servicios" className="py-section bg-base border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
-          <div>
-            <SectionLabel label="Servicios" index="02" />
-            <h2 className="font-display text-display-xl text-ink max-w-2xl leading-tight">
+        <div className="mb-16">
+          
+            <SectionLabel label="Servicios" />
+            <h2 className="font-display text-display-xl text-ink max-w-3xl leading-tight">
               Lo que{" "}
-              <span className="text-gradient-subtle">construimos</span>{" "}
+              <span className="text-violet">construimos</span>{" "}
               juntos
             </h2>
-          </div>
-          <p className="text-ink-muted text-body-sm max-w-xs leading-relaxed">
+          
+          <p className="text-ink-muted text-body-sm max-w-4xl leading-relaxed">
             Trabajamos con músicos, artistas visuales, colectivos y proyectos
             culturales. Si tienes algo que contar, construimos el espacio digital
             para contarlo.
