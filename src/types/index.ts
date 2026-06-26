@@ -26,7 +26,7 @@ export interface Tool {
 export interface LabPost {
   title: string;
   category: string;
-  date: string;
+ 
   excerpt: string;
   readTime: string;
 }

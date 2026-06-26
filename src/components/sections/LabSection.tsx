@@ -5,7 +5,6 @@ const posts: LabPost[] = [
   {
     title: "Construyendo presencia digital para un artista desde cero",
     category: "Proceso",
-    date: "Dic 2024",
     excerpt:
       "Un recorrido por las decisiones técnicas y de diseño al construir la presencia digital de un músico independiente sin presupuesto publicitario.",
     readTime: "8 min",
@@ -13,19 +12,11 @@ const posts: LabPost[] = [
   {
     title: "Por qué los músicos necesitan webs propias en 2025",
     category: "Reflexión",
-    date: "Nov 2024",
     excerpt:
       "El algoritmo cambia. Las plataformas cambian. Tu dominio propio es el único espacio que controlas completamente.",
     readTime: "5 min",
   },
-  {
-    title: "Audio API en el browser: experimentos sonoros",
-    category: "Tecnología",
-    date: "Oct 2024",
-    excerpt:
-      "Explorando la Web Audio API para crear experiencias sonoras inmersivas directamente en el navegador. Sin plugins, sin dependencias.",
-    readTime: "12 min",
-  },
+
 ];
 
 function PostCard({ post, index, large = false }: { post: LabPost; index: number; large?: boolean }) {
@@ -44,7 +35,6 @@ function PostCard({ post, index, large = false }: { post: LabPost; index: number
           </span>
           <div className="flex items-center gap-3 text-ink-dim/50 flex-shrink-0">
             <span className="font-mono text-label">{post.readTime}</span>
-            <span className="font-mono text-label">{post.date}</span>
           </div>
         </div>
 
@@ -77,10 +67,10 @@ export function LabSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
           <div>
-            <SectionLabel label="Laboratorio" index="04" />
+            <SectionLabel label="Laboratorio" />
             <h2 className="font-display text-display-xl text-ink leading-tight">
               Proceso,{" "}
-              <span className="text-gradient-subtle">experimentos</span>
+              <span className="text-violet">experimentos</span>
               <br className="hidden lg:block" /> y reflexiones
             </h2>
           </div>
@@ -116,7 +106,7 @@ export function LabSection() {
             <span className="font-mono text-label text-ink-dim uppercase tracking-widest mr-2">
               Temas:
             </span>
-            {["Diseño Web", "Música", "Proceso", "Next.js", "Artistas", "Audio API", "Identidad Digital"].map(
+            {["Desarrolo Web", "Música", "Proceso", "Artistas", "Identidad Digital"].map(
               (tag) => (
                 <button
                   key={tag}
