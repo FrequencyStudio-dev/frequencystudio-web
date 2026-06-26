@@ -48,7 +48,7 @@ export function Nav() {
                 <div className="absolute inset-[6px] bg-violet rounded-sm" />
               </div>
               <span className="font-display font-700 text-sm tracking-[0.15em] uppercase text-ink">
-                Studio
+                 Frequency Studio
               </span>
             </Link>
 
