@@ -10,26 +10,15 @@ export function AboutSection() {
   return (
     <section id="studio" className="py-section bg-base border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <SectionLabel label="Sobre el Estudio" index="05" />
+        <SectionLabel label="Sobre el Estudio"/>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left: big statement */}
           <div className="lg:col-span-6">
             <AnimateOnScroll>
               <h2 className="font-display text-display-xl text-ink leading-[1.0] tracking-[-0.03em] mb-10">
-                Donde la{" "}
-                <span className="text-gradient">música</span>{" "}
-                se encuentra
-                <br />
-                con el{" "}
-                <span
-                  style={{
-                    WebkitTextStroke: "1px rgba(147,64,255,0.5)",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  código
-                </span>
+                Frequency{" "}
+                <span className="text-violet">Studio</span>{" "}
               </h2>
             </AnimateOnScroll>
 
@@ -55,18 +44,7 @@ export function AboutSection() {
             </AnimateOnScroll>
 
             {/* Skills */}
-            <AnimateOnScroll delay={200}>
-              <div>
-                <span className="font-mono text-label text-ink-dim uppercase tracking-widest block mb-4">
-                  Stack & disciplinas
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
-                    <Tag key={skill}>{skill}</Tag>
-                  ))}
-                </div>
-              </div>
-            </AnimateOnScroll>
+            
           </div>
 
           {/* Right: bio */}
@@ -74,45 +52,27 @@ export function AboutSection() {
             <AnimateOnScroll delay={100}>
               <div className="space-y-5">
                 <p className="text-ink text-body-lg leading-relaxed">
-                  Soy diseñador, desarrollador y músico. Llevo años construyendo
-                  proyectos en la intersección entre el arte y la tecnología, primero
-                  para bandas y proyectos propios, y luego para una comunidad creciente
-                  de creadores que necesitan herramientas digitales a su medida.
+                  Frequency Studio explora la intersección entre creatividad y tecnología, 
+                  desarrollando soluciones digitales para artistas, bandas y proyectos culturales.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                  Entiendo el mundo creativo desde adentro. Sé lo que significa lanzar
-                  un disco, organizar una exposición o construir una marca artística
-                  desde cero. Ese contexto cambia completamente cómo diseño y desarrollo
-                  soluciones digitales.
+                 El trabajo parte de comprender los procesos creativos en su contexto real: 
+                 desde lanzar música o construir una identidad hasta dar forma a una propuesta 
+                 artística desde cero. Ese entendimiento guía el diseño de herramientas digitales 
+                 que acompañan y potencian cada proyecto.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                  El estudio trabaja con proyectos pequeños y medianos que quieren
-                  presencia digital de alto nivel sin los costes de una agencia grande.
-                  Atención personalizada, proceso colaborativo, entrega impecable.
+                 El estudio desarrolla sitios web, productos digitales y herramientas a medida, 
+                 combinando diseño, estrategia y tecnología con un enfoque en claridad, funcionalidad e identidad.
+                </p>
+                <p className="text-ink-muted text-body-sm leading-relaxed">
+                  Frequency Studio trabaja de forma cercana con cada proyecto, desde la idea inicial hasta la implementación final.
                 </p>
               </div>
             </AnimateOnScroll>
 
             {/* Stats row */}
-            <AnimateOnScroll delay={250}>
-              <div className="grid grid-cols-3 gap-0 border border-border">
-                {[
-                  { value: "40+", label: "Proyectos" },
-                  { value: "4", label: "Años" },
-                  { value: "3", label: "Países" },
-                ].map((stat, i) => (
-                  <div
-                    key={stat.label}
-                    className={`p-5 lg:p-6 ${i < 2 ? "border-r border-border" : ""}`}
-                  >
-                    <div className="font-display text-3xl text-violet mb-1">{stat.value}</div>
-                    <div className="font-mono text-label text-ink-dim uppercase tracking-widest">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </AnimateOnScroll>
+           
           </div>
         </div>
       </div>
