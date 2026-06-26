@@ -91,19 +91,15 @@ export function ToolsSection() {
   return (
     <section id="herramientas" className="py-section bg-base border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 mb-16">
+        <div className="mb-16">
           <div className="lg:col-span-6">
             <SectionLabel label="Herramientas & Recursos" index="03" />
-            <h2 className="font-display text-display-xl text-ink leading-tight">
+            <h2 className="font-display text-display-xl text-ink max-w-5xl leading-tight">
               Herramientas para{" "}
-              <br className="hidden lg:block" />
+             
               el{" "}
               <span
-                className="relative"
-                style={{
-                  WebkitTextStroke: "1px rgba(147,64,255,0.5)",
-                  WebkitTextFillColor: "transparent",
-                }}
+                className="text-violet"
               >
                 proceso
               </span>{" "}
