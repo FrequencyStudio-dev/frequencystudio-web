@@ -93,7 +93,7 @@ export function ToolsSection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
           <div className="lg:col-span-6">
-            <SectionLabel label="Herramientas & Recursos" index="03" />
+            <SectionLabel label="Herramientas & Recursos" />
             <h2 className="font-display text-display-xl text-ink max-w-5xl leading-tight">
               Herramientas para{" "}
              

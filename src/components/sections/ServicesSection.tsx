@@ -76,11 +76,6 @@ export function ServicesSection() {
               juntos
             </h2>
           
-          <p className="text-ink-muted text-body-sm max-w-4xl leading-relaxed">
-            Trabajamos con músicos, artistas visuales, colectivos y proyectos
-            culturales. Si tienes algo que contar, construimos el espacio digital
-            para contarlo.
-          </p>
         </div>
 
         {/* Services list */}

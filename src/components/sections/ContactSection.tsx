@@ -8,25 +8,12 @@ export function ContactSection() {
           {/* Big CTA headline */}
           <div className="lg:col-span-8">
             <AnimateOnScroll>
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1.5 h-1.5 rounded-full bg-violet" />
-                <span className="font-mono text-label text-ink-dim uppercase tracking-[0.2em]">
-                  [ 06 ] — Contacto
-                </span>
-              </div>
-
               <h2 className="font-display text-display-2xl text-ink leading-[0.93] tracking-[-0.03em] mb-10">
-                ¿Tienes un
-                <br />
-                proyecto{" "}
-                <span className="text-gradient">creativo</span>?
+                Cuentanos sobre tu
+               
+                {" "}
+                <span className="text-violet">proyecto</span>
               </h2>
-
-              <p className="text-ink-muted text-body-lg max-w-xl leading-relaxed mb-10">
-                Cuéntame sobre tu proyecto. Trabajamos con músicos, artistas, colectivos
-                y cualquier proyecto creativo que necesite presencia digital con
-                carácter propio.
-              </p>
 
               <a
                 href="mailto:hola@studio.com"
