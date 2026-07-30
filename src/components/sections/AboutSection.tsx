@@ -52,21 +52,26 @@ export function AboutSection() {
             <AnimateOnScroll delay={100}>
               <div className="space-y-5">
                 <p className="text-ink text-body-lg leading-relaxed">
-                  Frequency Studio explora la intersección entre creatividad y tecnología, 
-                  desarrollando soluciones digitales para artistas, bandas y proyectos culturales.
+                  Frequency Studio nace con una idea simple: los artistas independientes no solo necesitan crear, 
+                  también necesitan gestionar una carrera.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                 El trabajo parte de comprender los procesos creativos en su contexto real: 
-                 desde lanzar música o construir una identidad hasta dar forma a una propuesta 
-                 artística desde cero. Ese entendimiento guía el diseño de herramientas digitales 
-                 que acompañan y potencian cada proyecto.
+                  Detrás de cada proyecto artístico existen tareas técnicas, 
+                  administrativas y de organización que forman parte del 
+                  camino profesional: definir presupuestos, preparar materiales, 
+                  gestionar información, mantener una presencia 
+                  digital y resolver procesos que muchas veces consumen tiempo y energía.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                 El estudio desarrolla sitios web, productos digitales y herramientas a medida, 
-                 combinando diseño, estrategia y tecnología con un enfoque en claridad, funcionalidad e identidad.
+                  Por eso desarrollamos sitios web y herramientas digitales pensadas para artistas
+                  y proyectos creativos. Creamos soluciones prácticas que simplifican su actividad 
+                  profesional y les permiten enfocarse en lo que realmente importa: desarrollar su 
+                  proyecto artístico.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                  Frequency Studio trabaja de forma cercana con cada proyecto, desde la idea inicial hasta la implementación final.
+                  Nuestro objetivo es reducir la complejidad de la gestión digital para que 
+                  más artistas puedan trabajar de forma organizada, profesional y con mejores 
+                  herramientas.
                 </p>
               </div>
             </AnimateOnScroll>
