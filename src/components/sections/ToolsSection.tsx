@@ -3,32 +3,18 @@ import type { Tool } from "@/types";
 
 const tools: Tool[] = [
   {
+    title: "Calculadora de Caché",
+    description:
+      "Calcula cuánto cobrar por un show considerando gastos, cantidad de integrantes y objetivos de ganancia.",
+    status: "beta",
+    icon: "◉",
+  },
+  {
     title: "Constructor de Media Kit",
     description:
-      "Genera un media kit profesional en minutos. Biografía, fotos de prensa, discografía y links en un PDF/web listo para enviar.",
+      "Crea un media kit profesional para presentar tu proyecto artístico. Organiza biografía, fotos, discografía y enlaces en un formato listo para compartir.",
     status: "próximamente",
     icon: "◈",
-  },
-  {
-    title: "Kit de Lanzamiento",
-    description:
-      "Plantillas, checklist y herramientas para lanzar un disco, single o proyecto con una estrategia digital coherente.",
-    status: "próximamente",
-    icon: "◎",
-  },
-  {
-    title: "Generador de Portfolio",
-    description:
-      "Crea tu portfolio visual en minutos sin código. Diseños pensados para artistas visuales, fotógrafos y directores creativos.",
-    status: "beta",
-    icon: "◰",
-  },
-  {
-    title: "Análisis de Presencia",
-    description:
-      "Auditoría automatizada de tu presencia digital. Redes, web, SEO y posicionamiento con recomendaciones accionables.",
-    status: "próximamente",
-    icon: "◑",
   },
 ];
 
