@@ -5,20 +5,20 @@ const services: Service[] = [
   {
     title: "Sitios Web",
     description:
-      "Webs personalizadas construidas desde cero. Diseño y desarrollo a medida para proyectos creativos que necesitan presencia digital sólida y diferenciada.",
-    details: ["Diseño personalizado", "Optimización de rendimiento", "SEO técnico"],
+       "Sitios web personalizados para artistas y proyectos creativos que buscan una presencia digital profesional y una forma clara de presentar su trabajo.",
+   
   },
   {
     title: "Landing Pages de Lanzamiento",
     description:
-      "Páginas de alto impacto para lanzamientos de discos, proyectos y eventos. Diseñadas para convertir y crear expectativa desde el primer scroll.",
-    details: ["Diseño en 72h", "Pre-save / Pre-venta", "Seguimiento de resultados", "Construcción de audiencia"],
+       "Páginas diseñadas para presentar lanzamientos, eventos y nuevos proyectos, centralizando la información y facilitando la promoción.",
+   
   },
   {
     title: "Herramientas Digitales",
     description:
-      "Herramientas digitales creadas para las necesidades reales de cada proyecto. Menos tareas repetitivas, más tiempo para crear.",
-    details: ["Automatización", "Integraciones", "Paneles de gestión", "Procesos personalizados"],
+       "Aplicaciones y herramientas desarrolladas para simplificar tareas técnicas, administrativas y de gestión.",
+   
   },
 ];
 
@@ -48,16 +48,7 @@ function ServiceRow({ service, index }: { service: Service; index: number }) {
         </div>
 
         {/* Details */}
-        <div className="lg:col-span-3 flex flex-col gap-2 lg:items-end">
-          {service.details.map((detail) => (
-            <div key={detail} className="flex items-center gap-2">
-              <VioletDot className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="font-mono text-label text-ink-dim uppercase tracking-wider">
-                {detail}
-              </span>
-            </div>
-          ))}
-        </div>
+
       </div>
     </AnimateOnScroll>
   );
