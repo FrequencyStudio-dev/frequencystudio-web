@@ -21,7 +21,7 @@ export function HeroSection() {
         {/* Subheadline + scroll cue */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <p className="text-ink-muted text-body-lg max-w-xl leading-relaxed">
-            Desarrollamos herramientas digitales y sitios web para ayudar a artistas y 
+            Desarrollamos  sitios web y herramientas digitales para ayudar a artistas y 
             proyectos creativos a gestionar su actividad profesional.
           </p>
 
@@ -57,7 +57,7 @@ export function HeroSection() {
         {/* Bottom strip */}
         <div className="mt-16 lg:mt-20 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-8">
-            {["Desarrollo Web", "Diseño de Sistemas", "Productos digitales"].map(
+            {["Desarrollo Web", "Herramientas digitales"].map(
               (item) => (
                 <span
                   key={item}
