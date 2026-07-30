@@ -90,23 +90,7 @@ export function HeroSection() {
               )
             )}
           </div>
-          <div className="flex items-center gap-2 text-ink-dim/40">
-            <div className="w-px h-8 bg-border" />
-            <span className="font-mono text-label">Scroll</span>
-            <svg
-              className="w-3 h-3 mt-0.5"
-              viewBox="0 0 12 12"
-              fill="none"
-            >
-              <path
-                d="M6 2v8M2 8l4 4 4-4"
-                stroke="currentColor"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
+          
         </div>
       </div>
     </section>
