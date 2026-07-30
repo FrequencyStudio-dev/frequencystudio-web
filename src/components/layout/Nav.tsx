@@ -43,9 +43,10 @@ export function Nav() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link href="/" className="group flex items-center gap-3">
-              <div className="relative w-7 h-7">
-                <div className="absolute inset-0 border border-violet rounded-sm rotate-45 transition-transform duration-300 group-hover:rotate-[225deg]" />
-                <div className="absolute inset-[6px] bg-violet rounded-sm" />
+              <div className="relative w-12 h-12">
+                <img
+                src="/logo/fs-logo-web-bg.png"
+                />
               </div>
               <span className="font-display font-700 text-sm tracking-[0.15em] uppercase text-ink">
                  Frequency Studio
