@@ -6,7 +6,6 @@ const projects: Project[] = [
     id: "01",
     title: "Kurtco Producciones",
     category: "Productora",
-    year: "2024",
     description:
       "Proyecto colectivo orientado a la gestión, producción y difusión de músicos y artistas emergentes",
     url: "https://kurtcoproducciones.com/",
@@ -18,13 +17,23 @@ const projects: Project[] = [
     id: "02",
     title: "Joy Amorín",
     category: "Música",
-    year: "2024",
     description:
       "Artista musical independiente y creadora digital.",
     url: "https://joyamorin.vercel.app/",
     accentColor: "#c084fc",
     index: "02",
-    image: "/projects/joy-amorin.png",
+    image: "/projects/joy-amorin-1.png",
+  },
+  {
+    id: "03",
+    title: "El asilo de la bestia",
+    category: "Música",
+    description:
+      "Banda de rock/metal.",
+    url: "https://elasilodelabestia.vercel.app/",
+    accentColor: "#c084fc",
+    index: "02",
+    image: "/projects/el-asilo-de-la-bestia.png",
   },
   
 ];
@@ -77,9 +86,7 @@ function ProjectCard({ project }: { project: Project; }) {
                 {project.title}
               </h3>
             </div>
-            <span className="font-mono text-label text-ink-dim mt-1 flex-shrink-0">
-              {project.year}
-            </span>
+
           </div>
 
           <p className="text-ink-muted text-body-sm mb-5 leading-relaxed">

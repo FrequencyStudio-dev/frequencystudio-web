@@ -2,7 +2,6 @@ export interface Project {
   id: string;
   title: string;
   category: string;
-  year: string;
   description: string;
   url: string;
   accentColor: string;
