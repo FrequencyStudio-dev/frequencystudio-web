@@ -8,16 +8,22 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-6 h-6">
-                <div className="absolute inset-0 border border-violet rounded-sm rotate-45" />
-                <div className="absolute inset-[5px] bg-violet rounded-sm" />
+              <div className="relative w-12 h-12 shrink-0">
+                <img
+                  src="/logo/fs-logo-web-bg.png"
+                  alt="Frequency Studio"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="font-display font-700 text-sm tracking-[0.15em] uppercase text-ink">
                 Studio
               </span>
             </div>
-            <p className="text-ink-muted text-body-sm max-w-xs leading-relaxed">
+            {/* <p className="text-ink-muted text-body-sm max-w-xs leading-relaxed">
               Diseño y desarrollo para proyectos creativos. Música, tecnología y diseño en un mismo espacio.
+            </p> */}
+            <p className="text-ink-muted text-body-sm max-w-xs leading-relaxed">
+              Ayudamos a músicos y creativos con herramientas tecnológicas que para que sea más fácil su trabajo.
             </p>
           </div>
 
@@ -52,7 +58,7 @@ export function Footer() {
                 hola@studio.com
               </a>
               <div className="flex items-center gap-4 mt-2">
-                {["Instagram", "Behance", "GitHub"].map((s) => (
+                {["Instagram"].map((s) => (
                   <a
                     key={s}
                     href="#"
