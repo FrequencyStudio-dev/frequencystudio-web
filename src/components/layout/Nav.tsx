@@ -69,7 +69,7 @@ export function Nav() {
             {/* CTA + Hamburger */}
             <div className="flex items-center gap-4">
               <button
-                onClick={() => handleNavClick("#contacto")}
+                onClick={() => handleNavClick("#footer")}
                 className="hidden lg:flex items-center gap-2 px-4 py-2 border border-violet/40 text-violet text-label uppercase tracking-widest font-mono hover:bg-violet/10 hover:border-violet transition-all duration-300"
               >
                 Contacto
@@ -120,7 +120,7 @@ export function Nav() {
             </button>
           ))}
           <button
-            onClick={() => handleNavClick("#contacto")}
+            onClick={() => handleNavClick("#footer")}
             className="mt-4 px-6 py-3 border border-violet text-violet font-mono text-sm uppercase tracking-widest hover:bg-violet/10 transition-all duration-300"
           >
             Contacto
