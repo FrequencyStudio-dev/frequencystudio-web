@@ -44,7 +44,7 @@ export function AboutSection() {
             </AnimateOnScroll>
 
             {/* Skills */}
-            
+        
           </div>
 
           {/* Right: bio */}
@@ -52,27 +52,28 @@ export function AboutSection() {
             <AnimateOnScroll delay={100}>
               <div className="space-y-5">
                 <p className="text-ink text-body-lg leading-relaxed">
-                  Frequency Studio nace con una idea simple: los artistas independientes no solo necesitan crear, 
-                  también necesitan gestionar una carrera.
+                  Frequency Studio nace con una idea simple: los artistas independientes 
+                  y los proyectos creativos no solo necesitan crear, también necesitan construir 
+                  una presencia digital sólida y gestionar su actividad de forma profesional.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                  Detrás de cada proyecto artístico existen tareas técnicas, 
-                  administrativas y de organización que forman parte del 
-                  camino profesional: definir presupuestos, preparar materiales, 
-                  gestionar información, mantener una presencia 
-                  digital y resolver procesos que muchas veces consumen tiempo y energía.
+                  Un sitio web propio permite presentar un proyecto, compartir su trabajo y 
+                  generar nuevas oportunidades. Al mismo tiempo, detrás de cada proyecto existen 
+                  tareas de organización, presupuestos y gestión que muchas veces consumen tiempo
+                   y energía.
                 </p>
                 <p className="text-ink-muted text-body-sm leading-relaxed">
-                  Por eso desarrollamos sitios web y herramientas digitales pensadas para artistas
-                  y proyectos creativos. Creamos soluciones prácticas que simplifican su actividad 
-                  profesional y les permiten enfocarse en lo que realmente importa: desarrollar su 
-                  proyecto artístico.
+                  Por eso desarrollamos sitios web y herramientas digitales pensadas para artistas y 
+                  proyectos creativos. Creamos sitios web que fortalecen su presencia digital, y herraminetas
+                  digitales que simplifican los procesos de trabajo y les permiten enfocarse en lo que realmente 
+                  mporta: desarrollar su proyecto.
                 </p>
-                <p className="text-ink-muted text-body-sm leading-relaxed">
-                  Nuestro objetivo es reducir la complejidad de la gestión digital para que 
-                  más artistas puedan trabajar de forma organizada, profesional y con mejores 
-                  herramientas.
-                </p>
+                <div className="mt-12 border-t border-border pt-10">
+                  <p className="font-display text-2xl lg:text-3xl text-ink leading-relaxed">
+                    Nuestro objetivo es facilitar la organización del trabajo y fortalecer la
+                    presencia digital de artistas y proyectos creativos.
+                  </p>
+                </div>
               </div>
             </AnimateOnScroll>
 
