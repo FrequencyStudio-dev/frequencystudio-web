@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 
 const navLinks = [
@@ -21,8 +22,15 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
+    }
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {

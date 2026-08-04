@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Studio — Diseño y Desarrollo para Proyectos Creativos",
@@ -21,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body className="bg-base text-ink font-body antialiased overflow-x-hidden">
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
