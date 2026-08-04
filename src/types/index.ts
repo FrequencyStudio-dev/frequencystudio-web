@@ -27,4 +27,5 @@ export interface LabPost {
  
   excerpt: string;
   readTime: string;
+  slug: string;
 }
