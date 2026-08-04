@@ -22,7 +22,7 @@ function PostCard({
     <AnimateOnScroll delay={index * 120}>
       <Link href={`/lab/${post.slug}`}>
         <article
-          className={`group cursor-pointer border-b border-border hover:border-violet/30 transition-colors duration-500 ${
+          className={`group cursor-pointer hover:border-violet/30 transition-colors duration-500 ${
             large ? "pb-10 lg:pb-12" : "pb-8 lg:pb-10"
           }`}
         >

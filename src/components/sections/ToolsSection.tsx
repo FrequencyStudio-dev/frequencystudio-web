@@ -1,5 +1,6 @@
 import { SectionLabel, AnimateOnScroll, Tag } from "@/components/ui";
 import type { Tool } from "@/types";
+import { NewsletterStrip } from "@/components/sections/NewsletterStrip";
 
 const tools: Tool[] = [
   {
@@ -75,7 +76,7 @@ function ToolCard({ tool, index }: { tool: Tool; index: number }) {
 
 export function ToolsSection() {
   return (
-    <section id="herramientas" className="py-section bg-base border-t border-border">
+    <section id="herramientas" className="py-section bg-base">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
           <div className="lg:col-span-6">
@@ -109,28 +110,9 @@ export function ToolsSection() {
         </div>
 
         {/* Newsletter strip */}
-        <AnimateOnScroll delay={400}>
-          <div className="mt-10 p-6 lg:p-8 border border-border-light/50 bg-surface/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div>
-              <p className="font-display text-lg text-ink mb-1">
-                Sé el primero en acceder
-              </p>
-              <p className="text-ink-muted text-body-sm">
-                Recibe notificación cuando lancemos nuevas herramientas.
-              </p>
-            </div>
-            <div className="flex items-center gap-0 w-full sm:w-auto">
-              <input
-                type="email"
-                placeholder="tu@email.com"
-                className="flex-1 sm:w-64 px-4 py-3 bg-base border border-border text-ink text-body-sm font-mono placeholder:text-ink-dim/50 focus:outline-none focus:border-violet/50 transition-colors duration-200"
-              />
-              <button className="px-5 py-3 bg-violet text-ink text-body-sm font-mono uppercase tracking-widest hover:bg-violet/80 transition-all duration-300 flex-shrink-0">
-                Avisar
-              </button>
-            </div>
-          </div>
-        </AnimateOnScroll>
+        <div className="mt-16">
+          <NewsletterStrip />
+        </div>
       </div>
     </section>
   );

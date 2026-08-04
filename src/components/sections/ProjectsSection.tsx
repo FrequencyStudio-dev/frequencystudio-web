@@ -140,20 +140,6 @@ export function ProjectsSection() {
           ))}
 
           {/* CTA card */}
-          <AnimateOnScroll delay={400}>
-            <div className="border border-dashed border-border hover:border-violet/40 transition-all duration-500 cursor-pointer group h-full min-h-[200px] flex flex-col items-center justify-center p-8 text-center gap-4">
-              <div
-                className="w-10 h-10 border border-border group-hover:border-violet/40 flex items-center justify-center transition-all duration-300"
-              >
-                <svg className="w-5 h-5 text-ink-dim group-hover:text-violet transition-colors duration-300" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </div>
-              <p className="font-mono text-label text-ink-dim uppercase tracking-widest group-hover:text-ink transition-colors duration-300">
-                Ver todos los proyectos
-              </p>
-            </div>
-          </AnimateOnScroll>
         </div>
       </div>
     </section>
