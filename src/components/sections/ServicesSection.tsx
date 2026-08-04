@@ -75,34 +75,6 @@ export function ServicesSection() {
             <ServiceRow key={service.title} service={service} index={i} />
           ))}
         </div>
-
-        {/* CTA */}
-        <AnimateOnScroll delay={500}>
-          <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <a
-              href="#contacto"
-              className="group flex items-center gap-3 px-6 py-3.5 border border-violet text-violet font-mono text-label uppercase tracking-widest hover:bg-violet/10 transition-all duration-300"
-            >
-              Hablemos de tu proyecto
-              <svg
-                className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300"
-                viewBox="0 0 14 14"
-                fill="none"
-              >
-                <path
-                  d="M3 7h8M7 3l4 4-4 4"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-            <span className="font-mono text-label text-ink-dim">
-              Respuesta en menos de 48h
-            </span>
-          </div>
-        </AnimateOnScroll>
       </div>
     </section>
   );

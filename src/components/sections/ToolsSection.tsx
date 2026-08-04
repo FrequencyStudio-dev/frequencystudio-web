@@ -75,7 +75,7 @@ function ToolCard({ tool, index }: { tool: Tool; index: number }) {
 
 export function ToolsSection() {
   return (
-    <section id="herramientas" className="py-section bg-base border-t border-border">
+    <section id="herramientas" className="py-section bg-base">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
           <div className="lg:col-span-6">
