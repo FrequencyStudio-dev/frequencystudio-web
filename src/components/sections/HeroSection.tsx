@@ -21,8 +21,8 @@ export function HeroSection() {
         {/* Subheadline + scroll cue */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <p className="text-ink-muted text-body-lg max-w-xl leading-relaxed">
-            Desarrollamos  sitios web y herramientas digitales para ayudar a artistas y 
-            proyectos creativos a gestionar su actividad profesional.
+            Desarrollamos herramientas digitales y sitios web para 
+            simplificar la gestión y comunicar la identidad de cada proyecto.
           </p>
 
           <div className="flex items-center gap-6">
