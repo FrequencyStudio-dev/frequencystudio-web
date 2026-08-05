@@ -19,6 +19,8 @@ export interface Tool {
   description: string;
   status: "próximamente" | "disponible" | "beta";
   icon: string;
+  featured?: boolean;
+  href?: string;
 }
 
 export interface LabPost {
