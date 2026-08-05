@@ -57,7 +57,7 @@ export function Footer() {
               
                   <a
                  
-                    href="https://instagram.com/websoluciones_uy"
+                    href="https://instagram.com/frecuencystudio.lab"
                     className="font-mono text-label text-ink-dim hover:text-violet uppercase tracking-wider transition-colors duration-200"
                   >
                     <InstagramIcon />
