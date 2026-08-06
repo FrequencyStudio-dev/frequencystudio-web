@@ -58,12 +58,12 @@ export function NewsletterStrip() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="tu@email.com"
             required
-            className="flex-1 sm:w-64 px-4 py-3 bg-base border border-border text-ink text-body-sm font-mono placeholder:text-ink-dim/50 focus:outline-none focus:border-violet/50 transition-colors duration-200"
+            className="flex-1 min-w-0 sm:w-64 px-4 py-3 bg-base border border-border text-ink text-body-sm font-mono placeholder:text-ink-dim/50 focus:outline-none focus:border-violet/50 transition-colors duration-200"
           />
 
           <button
             type="submit"
-            className="px-5 py-3 bg-violet text-ink text-body-sm font-mono uppercase tracking-widest hover:bg-violet/80 transition-all duration-300 flex-shrink-0"
+            className="px-4 sm:px-5 py-3 bg-violet text-ink text-body-sm font-mono uppercase tracking-widest hover:bg-violet/80 transition-all duration-300 flex-shrink-0"
           >
             Avisar
           </button>
