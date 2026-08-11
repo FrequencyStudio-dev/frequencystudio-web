@@ -30,7 +30,7 @@ const projects: Project[] = [
     category: "Música",
     description:
       "Banda de rock/metal.",
-    url: "https://elasilodelabestia.vercel.app/",
+    url: "https://elasilodelabestia.com/",
     accentColor: "#c084fc",
     index: "02",
     image: "/projects/el-asilo-de-la-bestia.png",
