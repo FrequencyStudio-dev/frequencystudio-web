@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {InstagramIcon, MailIcon, WhatsAppIcon} from "@/components/ui/SocialIcons";
 
 export function Footer() {
@@ -29,7 +28,7 @@ export function Footer() {
               <span className="font-mono text-label text-ink-dim uppercase tracking-widest">
                 Navegación
               </span>
-              {["Proyectos", "Servicios", "Herramientas", "Lab", "Studio"].map((item) => (
+              {["Proyectos", "Servicios", "Precios", "Herramientas", "Lab", "Studio"].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}

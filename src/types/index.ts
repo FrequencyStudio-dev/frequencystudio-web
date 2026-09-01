@@ -23,6 +23,27 @@ export interface Tool {
   href?: string;
 }
 
+export interface PricingFeature {
+  label: string;
+  sub?: string[];
+}
+
+export interface PricingTier {
+  name: string;
+  tagline: string;
+  description: string;
+  features: PricingFeature[];
+  pricePrefix: string;
+  priceValue: string;
+  featured?: boolean;
+}
+
+export interface ExtraService {
+  title: string;
+  description: string;
+  price?: string;
+}
+
 export interface LabPost {
   title: string;
   category: string;
