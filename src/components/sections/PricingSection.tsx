@@ -245,7 +245,7 @@ function ExtraRow({ extra, index }: { extra: ExtraService; index: number }) {
 
 export function PricingSection() {
   return (
-    <section id="precios" className="py-section bg-base border-t border-border">
+    <section id="paquetes" className="py-section bg-base border-t border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
           <SectionLabel label="Sitios Web" />

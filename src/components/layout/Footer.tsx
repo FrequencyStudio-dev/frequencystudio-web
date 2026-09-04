@@ -28,7 +28,7 @@ export function Footer() {
               <span className="font-mono text-label text-ink-dim uppercase tracking-widest">
                 Navegación
               </span>
-              {["Proyectos", "Servicios", "Precios", "Herramientas", "Lab", "Studio"].map((item) => (
+              {["Proyectos", "Servicios", "Paquetes", "Herramientas", "Lab", "Studio"].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
