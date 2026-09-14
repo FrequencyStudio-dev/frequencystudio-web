@@ -19,10 +19,10 @@ const projects: Project[] = [
     category: "Música",
     description:
       "Artista musical independiente y creadora digital.",
-    url: "https://joyamorin.vercel.app/",
+    url: "https://joyamorin.com/",
     accentColor: "#c084fc",
     index: "02",
-    image: "/projects/joy-amorin-1.png",
+    image: "/projects/home.png",
   },
   {
     id: "03",
@@ -32,7 +32,7 @@ const projects: Project[] = [
       "Banda de rock/metal.",
     url: "https://elasilodelabestia.com/",
     accentColor: "#c084fc",
-    index: "02",
+    index: "03",
     image: "/projects/el-asilo-de-la-bestia.png",
   },
   

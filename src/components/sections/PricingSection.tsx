@@ -17,7 +17,7 @@ const tiers: PricingTier[] = [
       { label: "Publicación del sitio" },
     ],
     pricePrefix: "Desde",
-    priceValue: "USD 350",
+    priceValue: "USD 320",
   },
   {
     name: "Profesional",
@@ -35,7 +35,7 @@ const tiers: PricingTier[] = [
       { label: "Publicación del sitio" },
     ],
     pricePrefix: "Desde",
-    priceValue: "USD 690",
+    priceValue: "USD 600",
     featured: true,
   },
   {
