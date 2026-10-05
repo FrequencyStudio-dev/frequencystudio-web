@@ -1,23 +1,16 @@
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { FeaturedProjects} from "@/components/sections/FeaturedProjects";
 import { ServicesSection } from "@/components/sections/ServicesSection";
-import { PricingSection } from "@/components/sections/PricingSection";
-import { ToolsSection } from "@/components/sections/ToolsSection";
-import { LabSection } from "@/components/sections/LabSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
 
 export default function Home() {
   return (
     <>
       <main>
         <HeroSection />
+        <FeaturedProjects />
         <ProjectsSection />
         <ServicesSection />
-        <PricingSection />
-        <ToolsSection />
-        <LabSection />
-        <AboutSection />
       </main>
     </>
   );

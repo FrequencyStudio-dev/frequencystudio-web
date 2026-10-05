@@ -45,31 +45,12 @@ export function HeroSection() {
                 />
               </svg>
             </a>
-            <a
-              href="#studio"
-              className="font-mono text-label text-ink-muted hover:text-ink uppercase tracking-widest transition-colors duration-200"
-            >
-              El estudio
-            </a>
+            
           </div>
         </div>
 
         {/* Bottom strip */}
-        <div className="mt-16 lg:mt-20 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-8">
-            {["Desarrollo Web", "Herramientas digitales"].map(
-              (item) => (
-                <span
-                  key={item}
-                  className="font-mono text-label text-ink-dim/60 uppercase tracking-wider"
-                >
-                  {item}
-                </span>
-              )
-            )}
-          </div>
-          
-        </div>
+        
       </div>
     </section>
   );
