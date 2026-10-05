@@ -162,12 +162,11 @@ export function ServicesSection() {
     >
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         {/* Header */}
-        <div className="mb-10 lg:mb-14">
-          <SectionLabel label="Servicios" />
-
+        <div className="mb-8 lg:mb-10">
+  
           <div className="mt-5 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <h2 className="max-w-4xl font-display text-display-xl leading-[0.9] tracking-[-0.04em] text-ink">
-              Desarrollo web
+              Servicios
             </h2>
 
             <p className="max-w-md text-body-sm leading-relaxed text-ink-muted">

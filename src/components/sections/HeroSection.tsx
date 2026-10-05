@@ -8,7 +8,7 @@ export function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 pt-40 w-full">
         {/* Headline */}
         <h1 className="font-display text-display-2xl text-ink leading-[0.93] tracking-[-0.03em] max-w-5xl mb-8 lg:mb-10">
-          Soluciones digitales{" "}
+          Desarrollo web{" "}
           <br className="hidden lg:block" />
           para{" "}
           <span className="text-violet">artistas</span>
@@ -21,8 +21,7 @@ export function HeroSection() {
         {/* Subheadline + scroll cue */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <p className="text-ink-muted text-body-lg max-w-xl leading-relaxed">
-            Desarrollamos herramientas digitales y sitios web para 
-            simplificar la gestión y comunicar la identidad de cada proyecto.
+            Llevamos tu proyecto artístico al siguiente nivel con un sitio web a medida, adaptado a tu identidad y necesidades.
           </p>
 
           <div className="flex items-center gap-6">
