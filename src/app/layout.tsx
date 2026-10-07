@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
+// Pantalla de DAW de fondo: comentá una línea para desactivar esa parte
+// (sin daw-screen.css no se muestra nada de la pantalla)
+import "@/animations/daw-screen/daw-screen.css";
+import "@/animations/daw-screen/daw-ruler.css";
+import "@/animations/daw-screen/daw-recording.css";
+import "@/animations/daw-screen/daw-transport.css";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { DawScreen } from "@/animations/daw-screen/DawScreen";
 
 export const metadata: Metadata = {
   title: "Studio — Diseño y Desarrollo para Proyectos Creativos",
@@ -23,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body className="bg-base text-ink font-body antialiased overflow-x-hidden">
+        <DawScreen />
         <Nav />
         {children}
         <Footer />

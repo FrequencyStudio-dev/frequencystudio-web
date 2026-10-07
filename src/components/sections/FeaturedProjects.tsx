@@ -78,7 +78,7 @@ function ProjectInfo({ project }: { project: Project }) {
 
 export function FeaturedProjects() {
   return (
-    <section id="proyectos" className="bg-base py-section">
+    <section id="proyectos" className="py-section">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         {/* Section heading */}
         <div className="mb-16 border-t border-border pt-5 lg:mb-24">

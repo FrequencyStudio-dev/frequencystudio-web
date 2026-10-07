@@ -158,7 +158,7 @@ export function ServicesSection() {
   return (
     <section
       id="servicios"
-      className="border-t border-border bg-base py-section"
+      className="border-t border-border py-section"
     >
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         {/* Header */}

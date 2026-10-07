@@ -1,0 +1,128 @@
+/* ==========================================================================
+   DAW screen — bar ruler and the playhead that follows the scroll.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+/* Reveal (both render with the `hidden` attribute) */
+.daw-ruler[hidden] {
+  display: flex;
+}
+
+.daw-playhead[hidden] {
+  display: block;
+}
+
+/* --- Ruler --------------------------------------------------------------- */
+
+.daw-ruler {
+  position: absolute;
+  top: var(--daw-top);
+  left: 0;
+  right: 0;
+  height: var(--daw-ruler-h);
+  border-top: 1px solid var(--daw-line-strong);
+  border-bottom: 1px solid var(--daw-line-strong);
+  background: var(--daw-panel);
+}
+
+.daw-ruler__corner {
+  flex: none;
+  width: var(--daw-head-w);
+  padding: 7px 12px 0;
+  overflow: hidden;
+  border-right: 1px solid var(--daw-line-strong);
+  color: var(--daw-text-dim);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+.daw-ruler__scale {
+  position: relative;
+  flex: 1;
+  display: flex;
+}
+
+.daw-ruler__bar {
+  position: relative;
+  flex: 1 1 0;
+}
+
+/* Bar tick; every 4th bar (the labelled ones) gets a full-height tick */
+.daw-ruler__bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 5px;
+  background: var(--daw-line-strong);
+}
+
+.daw-ruler__bar:nth-child(4n + 1)::before {
+  height: 100%;
+}
+
+.daw-ruler__label {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  color: var(--daw-text);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+/* Played portion: fills up to the playhead */
+.daw-ruler__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--daw-violet);
+  opacity: 0.5;
+  transform: scaleX(var(--daw-progress, 0));
+  transform-origin: left;
+}
+
+@media (max-width: 767px) {
+  .daw-ruler__corner,
+  .daw-ruler__bar:nth-child(8n + 5) .daw-ruler__label {
+    display: none;
+  }
+}
+
+/* --- Playhead ------------------------------------------------------------ */
+
+.daw-playhead {
+  position: absolute;
+  top: var(--daw-top);
+  bottom: var(--daw-transport-h);
+  left: var(--daw-head-w);
+  right: 0;
+  transform: translateX(calc(var(--daw-progress, 0) * 100%));
+}
+
+.daw-playhead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: rgba(245, 245, 240, 0.14);
+}
+
+/* Marker on the ruler */
+.daw-playhead::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--daw-ruler-h) - 8px);
+  left: -4px;
+  width: 9px;
+  height: 7px;
+  background: var(--daw-violet);
+  opacity: 0.7;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}

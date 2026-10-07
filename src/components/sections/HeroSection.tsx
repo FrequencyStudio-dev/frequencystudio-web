@@ -2,7 +2,7 @@ import { AudioGrid } from "@/components/ui/AudioGrid";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-base">
+    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
      
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 pt-40 w-full">

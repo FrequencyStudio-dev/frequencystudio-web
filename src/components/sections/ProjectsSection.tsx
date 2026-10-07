@@ -60,7 +60,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function ProjectsSection() {
   return (
-    <section id="todos-los-proyectos" className="bg-base py-section">
+    <section id="todos-los-proyectos" className="py-section">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         <div className="mb-16 border-t border-border pt-5 lg:mb-24">
 
