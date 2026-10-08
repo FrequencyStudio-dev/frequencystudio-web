@@ -15,24 +15,23 @@ const services = [
       "Fechas y presentaciones",
       "Contacto y redes sociales",
     ],
-    price: "Desde USD 350",
+    price: "Desde USD 320",
   },
   {
   
     title: "Portfolio creativo",
     description:
       "Un sitio editorial para mostrar trabajos, proyectos y trayectoria con una presencia digital cuidada y adaptada a la identidad de cada proyecto.",
-    image: "/demos/portfolio-creativo.png",
-    url: "#",
-    tags: ["Portfolio", "Editorial", "Creativos"],
+    image: "/demos/mockup-portfolio-visual.png",
+    url: "https://art-visual-portfolio-demo.vercel.app/",
+    tags: ["Portfolio", "Editorial", "Artistas visuales"],
     includes: [
       "Presentación personal o de proyecto",
-      "Proyectos destacados",
-      "Galería de trabajos",
-      "Contenido editorial",
+      "Selección de trabajos destacados",
+      "información sobre tu práctica y servicios",
       "Contacto y redes sociales",
     ],
-    price: "Desde USD 350",
+    price: "Desde USD 320",
   },
 ];
 
@@ -97,7 +96,7 @@ function ServiceCard({
         <div className="lg:col-span-5 lg:pt-2">
           <div className="mb-8 flex items-center justify-between">
 
-            <span className="font-mono text-label uppercase tracking-widest text-ink-dim">
+            <span className="font-mono text-label uppercase tracking-widest text-ink-muted">
               {service.price}
             </span>
           </div>
@@ -114,7 +113,7 @@ function ServiceCard({
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="border border-border px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-dim"
+                className="border border-white/20 px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted"
               >
                 {tag}
               </span>
@@ -122,7 +121,7 @@ function ServiceCard({
           </div>
 
           <div className="mt-10 border-t border-border pt-6">
-            <span className="font-mono text-label uppercase tracking-[0.15em] text-ink-dim">
+            <span className="font-mono text-label uppercase tracking-[0.15em] text-ink-muted">
               Incluye
             </span>
 

@@ -1,160 +1,144 @@
-import { SectionLabel, AnimateOnScroll, Tag } from "@/components/ui";
-import type { Tool } from "@/types";
-import { NewsletterStrip } from "@/components/sections/NewsletterStrip";
+import { SectionLabel } from "@/components/ui";
 
-const tools: Tool[] = [
+const tools = [
   {
     title: "Calculadora de Caché",
     description:
-      "Calcula cuánto cobrar por un show considerando gastos, cantidad de integrantes y objetivos de ganancia.",
-    status: "beta",
-    icon: "◉",
-    featured: true,
+      "Calculá cuánto cobrar por tu próximo show considerando gastos, cantidad de integrantes y objetivo de ganancia.",
+    image: "/herramientas/calculadora-cache.png",
+    tags: ["Shows", "Presupuestos", "Gestión"],
+    status: "Beta",
+    statusType: "available",
     href: "https://calculadoracache.vercel.app",
+    cta: "Probar herramienta",
   },
   {
-    title: "Constructor de Media Kit",
+    title: "Generador de Setlist",
     description:
-      "Crea un media kit profesional para presentar tu proyecto artístico. Organiza biografía, fotos, discografía y enlaces en un formato listo para compartir.",
-    status: "próximamente",
-    icon: "◈",
-    featured: false,
-    href: "#",
+      "Organizá tus canciones y prepará el repertorio de tu próximo show de forma rápida y sencilla.",
+    image: "/herramientas/generador-setlist.jpg",
+    tags: ["Setlists", "Shows", "Repertorio"],
+    status: "Próximamente",
+    statusType: "soon",
+    href: null,
+    cta: null,
   },
 ];
 
-const statusStyles: Record<Tool["status"], string> = {
-  próximamente: "border-border-light text-ink-dim",
-  disponible: "border-violet/40 text-violet",
-  beta: "border-violet/30 text-violet/70",
-};
-
-function ToolCard({ tool, index }: { tool: Tool; index: number }) {
+function ToolMockup({
+  image,
+  title,
+}: {
+  image: string;
+  title: string;
+}) {
   return (
-    <AnimateOnScroll delay={index * 100}>
-      <div
-        className={`
-            group relative transition-all duration-500 p-7 lg:p-8 cursor-pointer overflow-hidden
-            ${
-              tool.featured
-                ? "border border-violet/40 bg-surface/50 shadow-[0_0_40px_rgba(147,64,255,0.08)] hover:border-violet/60 hover:shadow-[0_0_60px_rgba(147,64,255,0.15)]"
-                : "border border-border bg-surface/30 hover:border-violet/30 hover:bg-surface/60"
-            }
-          `}
-        >
-
-        {/* Icon + status */}
-        <div className="flex items-start justify-between mb-6">
-          <span
-            className="text-3xl font-display text-ink-dim group-hover:text-violet transition-colors duration-300"
-            aria-hidden="true"
-          >
-            {tool.icon}
-          </span>
-          <span
-            className={`font-mono text-label uppercase tracking-widest px-2.5 py-1 border ${statusStyles[tool.status]}`}
-          >
-            {tool.status}
-          </span>
+    <div className="overflow-hidden border border-border bg-surface">
+      <div className="flex h-9 items-center border-b border-border px-3">
+        <div className="flex gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
+          <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
+          <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
         </div>
 
-       {/* Content */}
-        <h3 className="font-display text-xl text-ink mb-3 group-hover:text-violet/90 transition-colors duration-300 leading-snug">
+        <div className="mx-auto hidden border border-border-light px-6 py-1 font-mono text-[9px] uppercase tracking-widest text-ink-dim sm:block">
+          {title}
+        </div>
+      </div>
+
+      <div className="aspect-[16/10] overflow-hidden bg-base">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+        />
+      </div>
+    </div>
+  );
+}
+
+function ToolCard({
+  tool,
+}: {
+  tool: (typeof tools)[number];
+}) {
+  return (
+    <article className="group">
+      <ToolMockup image={tool.image} title={tool.title} />
+
+      <div className="pt-5">
+        <div className="mb-4 flex items-center justify-between gap-4">
+          <span className="font-mono text-label uppercase tracking-[0.15em] text-violet">
+            {tool.status}
+          </span>
+
+          <div className="flex flex-wrap justify-end gap-2">
+            {tool.tags.map((tag) => (
+              <span
+                key={tag}
+                className="border border-border px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-widest text-ink-dim"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <h3 className="font-display text-display-md leading-none tracking-[-0.02em] text-ink transition-colors duration-300 group-hover:text-violet">
           {tool.title}
         </h3>
 
-        <p className="text-ink-muted text-body-sm leading-relaxed">
+        <p className="mt-3 max-w-xl text-body-sm leading-relaxed text-ink-muted">
           {tool.description}
         </p>
 
-        {tool.featured && (
-          <div className="mt-5">
-            <span className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 font-mono text-label uppercase tracking-widest text-green-400">
-              Gratis
-            </span>
-          </div>
-        )}
-
-        {/* Bottom CTA */}
-       {tool.href ? (
+        {tool.href ? (
           <a
             href={tool.href}
             target="_blank"
             rel="noopener noreferrer"
-            className={`mt-6 flex items-center gap-2 transition-all duration-300 ${
-              tool.featured
-                ? "text-ink-dim hover:text-violet"
-                : "text-ink-dim/0 group-hover:text-ink-dim"
-            }`}
+            className="mt-6 inline-flex items-center gap-3 border border-violet px-5 py-3 font-mono text-label uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-violet"
           >
-            <span className="font-mono text-label uppercase tracking-widest">
-              {tool.featured ? "Probar ahora" : "Notificarme"}
-            </span>
-            <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none">
-              <path
-                d="M2 6h8M6 2l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-              />
-            </svg>
+            {tool.cta}
+            <span>↗</span>
           </a>
         ) : (
-          <div className="mt-6 flex items-center gap-2 text-ink-dim/0 group-hover:text-ink-dim transition-all duration-300">
-            <span className="font-mono text-label uppercase tracking-widest">
-              Notificarme
-            </span>
-            <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none">
-              <path
-                d="M2 6h8M6 2l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
+          <span className="mt-6 inline-flex items-center border border-border px-5 py-3 font-mono text-label uppercase tracking-widest text-ink-dim">
+            Próximamente
+          </span>
         )}
       </div>
-    </AnimateOnScroll>
+    </article>
   );
 }
 
 export function ToolsSection() {
   return (
-    <section id="herramientas" className="py-section bg-base">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="mb-16">
-          <div className="lg:col-span-6">
-            <SectionLabel label="Herramientas & Recursos" />
-            <h2 className="font-display text-display-xl text-ink max-w-5xl leading-tight">
-              Herramientas para{" "}
-              <span
-                className="text-violet"
-              >
-                optimizar
-              </span>{" "}
-            tu flujo de trabajo.
+    <section id="herramientas" className="bg-base py-section">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+        {/* Header */}
+        <div className="mb-12 lg:mb-16">
+          <SectionLabel label="Herramientas" />
+
+          <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <h2 className="max-w-4xl font-display text-display-xl leading-[0.9] tracking-[-0.04em] text-ink">
+              Herramientas
+              <br />
+              <span className="text-violet">digitales</span>
             </h2>
-          </div>
-          <div className="lg:col-span-5 lg:col-start-8 flex items-end">
-            <p className="text-ink-muted text-body-sm leading-relaxed">
-              Estamos construyendo un conjunto de herramientas digitales pensadas
-              específicamente para proyectos creativos. Menos fricción, más foco
-              en lo que importa.
+
+            <p className="max-w-md text-body-sm leading-relaxed text-ink-muted">
+              Productos digitales creados para resolver tareas concretas y
+              simplificar el trabajo de artistas y proyectos musicales.
             </p>
           </div>
         </div>
 
-        {/* Tools grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {tools.map((tool, i) => (
-            <ToolCard key={tool.title} tool={tool} index={i} />
+        {/* Tools */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:gap-8">
+          {tools.map((tool) => (
+            <ToolCard key={tool.title} tool={tool} />
           ))}
-        </div>
-
-        {/* Newsletter strip */}
-        <div className="mt-16">
-          <NewsletterStrip />
         </div>
       </div>
     </section>

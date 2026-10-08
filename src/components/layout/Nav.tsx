@@ -7,10 +7,10 @@ import Link from "next/link";
 const navLinks = [
   { label: "Proyectos", href: "#proyectos" },
   { label: "Servicios", href: "#servicios" },
-  { label: "Paquetes", href: "#paquetes" },
   { label: "Herramientas", href: "#herramientas" },
+  /**{ label: "Paquetes", href: "#paquetes" },
   { label: "Lab", href: "#lab" },
-  { label: "Studio", href: "#studio" },
+  { label: "Studio", href: "#studio" },**/
 ];
 
 export function Nav() {
