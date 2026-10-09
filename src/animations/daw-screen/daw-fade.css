@@ -1,0 +1,23 @@
+/* ==========================================================================
+   DAW screen — the ruler and tracks fade out as you scroll past the hero.
+   The transport bar stays, so the timecode keeps counting.
+   To disable (grid visible on the whole page): comment out this file's
+   import in src/app/layout.tsx.
+   ========================================================================== */
+
+.daw-screen {
+  /* Screens scrolled before the fade starts */
+  --daw-fade-start: 0.2;
+  /* Screens it takes to disappear completely */
+  --daw-fade-length: 1.8;
+}
+
+/* --daw-scroll (screens scrolled) is set by DawScreen.tsx */
+.daw-ruler,
+.daw-tracks {
+  opacity: clamp(
+    0,
+    1 - (var(--daw-scroll, 0) - var(--daw-fade-start)) / var(--daw-fade-length),
+    1
+  );
+}

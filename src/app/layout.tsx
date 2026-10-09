@@ -4,8 +4,10 @@ import "./globals.css";
 // (sin daw-screen.css no se muestra nada de la pantalla)
 import "@/animations/daw-screen/daw-screen.css";
 import "@/animations/daw-screen/daw-ruler.css";
-import "@/animations/daw-screen/daw-recording.css";
 import "@/animations/daw-screen/daw-transport.css";
+import "@/animations/daw-screen/daw-fade.css"; // sin esta línea la grilla no se desvanece
+// Grabación de ondas en el hero: comentá la línea para desactivarla
+import "@/animations/hero-recording/hero-recording.css";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { DawScreen } from "@/animations/daw-screen/DawScreen";

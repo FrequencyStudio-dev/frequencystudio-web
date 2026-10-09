@@ -1,15 +1,11 @@
 /* ==========================================================================
-   DAW screen — bar ruler and the playhead that follows the scroll.
+   DAW screen — bar ruler fixed under the nav.
    To disable: comment out this file's import in src/app/layout.tsx.
    ========================================================================== */
 
-/* Reveal (both render with the `hidden` attribute) */
+/* Reveal the ruler (it renders with the `hidden` attribute) */
 .daw-ruler[hidden] {
   display: flex;
-}
-
-.daw-playhead[hidden] {
-  display: block;
 }
 
 /* --- Ruler --------------------------------------------------------------- */
@@ -73,56 +69,9 @@
   letter-spacing: 0.05em;
 }
 
-/* Played portion: fills up to the playhead */
-.daw-ruler__progress {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 2px;
-  background: var(--daw-violet);
-  opacity: 0.5;
-  transform: scaleX(var(--daw-progress, 0));
-  transform-origin: left;
-}
-
 @media (max-width: 767px) {
   .daw-ruler__corner,
   .daw-ruler__bar:nth-child(8n + 5) .daw-ruler__label {
     display: none;
   }
-}
-
-/* --- Playhead ------------------------------------------------------------ */
-
-.daw-playhead {
-  position: absolute;
-  top: var(--daw-top);
-  bottom: var(--daw-transport-h);
-  left: var(--daw-head-w);
-  right: 0;
-  transform: translateX(calc(var(--daw-progress, 0) * 100%));
-}
-
-.daw-playhead::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 1px;
-  background: rgba(245, 245, 240, 0.14);
-}
-
-/* Marker on the ruler */
-.daw-playhead::after {
-  content: "";
-  position: absolute;
-  top: calc(var(--daw-ruler-h) - 8px);
-  left: -4px;
-  width: 9px;
-  height: 7px;
-  background: var(--daw-violet);
-  opacity: 0.7;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }

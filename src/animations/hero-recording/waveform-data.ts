@@ -1,4 +1,4 @@
-// Generates fake-but-believable audio peaks for the background DAW clips.
+// Generates fake-but-believable audio peaks for the hero recording clip.
 // Seeded, so the same seed always produces the same shape.
 
 export type WaveKind = "vocal" | "drums" | "bass" | "guitar" | "pad";

@@ -1,0 +1,345 @@
+/* ==========================================================================
+   Hero recording — one DAW track next to the hero title (below it on
+   mobile/tablet) where takes get recorded one at a time.
+   To disable: comment out this file's import in src/app/layout.tsx.
+
+   One cycle (--hero-rec-cycle):
+     0–2%    a thin sliver appears
+     2–46%   recording: the clip grows behind the record head
+     46–48%  recording stops, clip takes the track colour and its name
+     48–78%  holds
+     78–88%  fades out
+     88–100% rest — HeroRecording.tsx loads the next take
+   ========================================================================== */
+
+/* On :root so the transport's REC lamp (DAW screen) can share the timing */
+:root {
+  --hero-rec-cycle: 16s;
+  --hero-rec-delay: 0.8s;
+}
+
+.hero-rec {
+  /* Width of the title's first line ("Desarrollo web", measured at 6.14em)
+     plus breathing room. Update it if that line's copy changes. */
+  --hero-rec-clear: 6.9em;
+
+  --rec-line: rgba(255, 255, 255, 0.07);
+  --rec-grid-bar: rgba(255, 255, 255, 0.05);
+  --rec-grid-beat: rgba(255, 255, 255, 0.022);
+  --rec-text: rgba(245, 245, 240, 0.32);
+  --rec-text-dim: rgba(245, 245, 240, 0.16);
+  --rec-violet: var(--color-violet, #9340ff);
+  --rec-violet-soft: var(--color-violet-soft, #c084fc);
+
+  --rec-border: rgba(147, 64, 255, 0.5);
+  --rec-fill: rgba(147, 64, 255, 0.07);
+  --rec-header: rgba(147, 64, 255, 0.22);
+  --rec-header-live: rgba(147, 64, 255, 0.4);
+  --rec-label: rgba(245, 245, 240, 0.6);
+  --rec-wave: rgba(147, 64, 255, 0.5);
+  --rec-wave-live: rgba(192, 132, 252, 0.7);
+  --rec-head: rgba(245, 245, 240, 0.65);
+
+  /* Mobile/tablet: a block right under the title */
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  height: 84px;
+  margin-bottom: 2rem;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono, monospace);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Reveal (it renders with the `hidden` attribute) */
+.hero-rec[hidden] {
+  display: flex;
+}
+
+/* Desktop: to the right of the title's first two lines. The font size matches
+   the title (text-display-2xl) so the em values below scale with it. */
+@media (min-width: 1024px) {
+  .hero-rec {
+    position: absolute;
+    top: 0.43em;
+    right: 0;
+    width: min(26rem, 100% - var(--hero-rec-clear));
+    max-width: none;
+    height: 1em;
+    margin: 0;
+    font-size: clamp(3rem, 8vw, 7rem);
+  }
+}
+
+/* --- Track header -------------------------------------------------------- */
+
+.hero-rec__track {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 14px;
+  color: var(--rec-text);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.hero-rec__num {
+  color: var(--rec-text-dim);
+}
+
+.hero-rec__arm {
+  margin-left: auto;
+  width: 13px;
+  height: 12px;
+  border: 1px solid var(--rec-line);
+  border-radius: 2px;
+  color: var(--rec-text-dim);
+  font-size: 7px;
+  line-height: 10px;
+  text-align: center;
+  animation: hero-rec-arm var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+/* --- Lane with a 4-bar grid ---------------------------------------------- */
+
+.hero-rec__lane {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--rec-line);
+  background-color: rgba(255, 255, 255, 0.012);
+  background-image:
+    linear-gradient(to right, var(--rec-grid-bar) 1px, transparent 1px),
+    linear-gradient(to right, var(--rec-grid-beat) 1px, transparent 1px);
+  background-size:
+    25% 100%,
+    6.25% 100%;
+}
+
+/* --- Clip ---------------------------------------------------------------- */
+
+.hero-rec__clip {
+  position: absolute;
+  inset: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--rec-border);
+  border-radius: 3px;
+  background: var(--rec-fill);
+  opacity: 0;
+  animation: hero-rec-cycle var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+.hero-rec__clip-header {
+  position: relative;
+  flex: none;
+  height: 13px;
+  background: var(--rec-header);
+  animation: hero-rec-header var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+.hero-rec__label {
+  position: absolute;
+  inset: 0 6px;
+  overflow: hidden;
+  color: var(--rec-label);
+  font-size: 8px;
+  line-height: 13px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hero-rec__label--rec {
+  color: var(--rec-violet-soft);
+  animation: hero-rec-label-rec var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+.hero-rec__label--name {
+  animation: hero-rec-label-name var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+.hero-rec__clip-body {
+  position: relative;
+  flex: 1;
+}
+
+.hero-rec__wave {
+  position: absolute;
+  inset: 3px 0;
+  width: 100%;
+  height: calc(100% - 6px);
+  fill: var(--rec-wave);
+  animation: hero-rec-wave var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+.hero-rec__axis {
+  stroke: var(--rec-wave);
+  stroke-width: 1;
+}
+
+/* Record head riding the growing edge */
+.hero-rec__head {
+  position: absolute;
+  inset: 0;
+  animation: hero-rec-head var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+.hero-rec__head::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 1px;
+  background: var(--rec-head);
+}
+
+/* Transport REC lamp of the DAW screen lights while the hero records */
+.daw-transport__rec {
+  animation: hero-rec-lamp var(--hero-rec-cycle) linear var(--hero-rec-delay) infinite both;
+}
+
+/* --- Keyframes ----------------------------------------------------------- */
+
+@keyframes hero-rec-cycle {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 calc(100% - 2px) 0 0);
+  }
+  2% {
+    opacity: 1;
+    clip-path: inset(0 calc(100% - 2px) 0 0);
+  }
+  46%,
+  78% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+  88%,
+  100% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes hero-rec-head {
+  0%,
+  2% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  46% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  47%,
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes hero-rec-wave {
+  0%,
+  46% {
+    fill: var(--rec-wave-live);
+  }
+  48%,
+  100% {
+    fill: var(--rec-wave);
+  }
+}
+
+@keyframes hero-rec-header {
+  0%,
+  46% {
+    background: var(--rec-header-live);
+  }
+  48%,
+  100% {
+    background: var(--rec-header);
+  }
+}
+
+@keyframes hero-rec-label-rec {
+  0%,
+  46% {
+    opacity: 1;
+  }
+  48%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-rec-label-name {
+  0%,
+  46% {
+    opacity: 0;
+  }
+  48%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-rec-arm {
+  0%,
+  1.9% {
+    border-color: var(--rec-line);
+    color: var(--rec-text-dim);
+  }
+  2%,
+  46% {
+    border-color: var(--rec-border);
+    color: var(--rec-violet);
+  }
+  46.1%,
+  100% {
+    border-color: var(--rec-line);
+    color: var(--rec-text-dim);
+  }
+}
+
+@keyframes hero-rec-lamp {
+  0%,
+  1.9% {
+    color: var(--daw-text-dim, #333333);
+  }
+  2%,
+  46% {
+    color: var(--daw-violet, #9340ff);
+  }
+  46.1%,
+  100% {
+    color: var(--daw-text-dim, #333333);
+  }
+}
+
+/* Reduced motion: a finished take, standing still */
+@media (prefers-reduced-motion: reduce) {
+  .hero-rec__clip,
+  .hero-rec__clip-header,
+  .hero-rec__label,
+  .hero-rec__wave,
+  .hero-rec__arm,
+  .daw-transport__rec {
+    animation: none;
+  }
+
+  .hero-rec__clip {
+    opacity: 1;
+  }
+
+  .hero-rec__label--rec,
+  .hero-rec__head {
+    display: none;
+  }
+}

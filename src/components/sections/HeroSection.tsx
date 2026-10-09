@@ -1,4 +1,5 @@
 import { AudioGrid } from "@/components/ui/AudioGrid";
+import { HeroRecording } from "@/animations/hero-recording/HeroRecording";
 
 export function HeroSection() {
   return (
@@ -6,17 +7,21 @@ export function HeroSection() {
      
       {/* Main content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-20 lg:pb-28 pt-40 w-full">
-        {/* Headline */}
-        <h1 className="font-display text-display-2xl text-ink leading-[0.93] tracking-[-0.03em] max-w-5xl mb-8 lg:mb-10">
-          Desarrollo web{" "}
-          <br className="hidden lg:block" />
-          para{" "}
-          <span className="text-violet">artistas</span>
-          {", "}
-          <br className="hidden lg:block" />
-           y proyectos{" "}
-          <span className="text-violet">creativos</span>
-        </h1>
+        {/* Headline + recording track (right of it on desktop, below on mobile) */}
+        <div className="relative">
+          <h1 className="font-display text-display-2xl text-ink leading-[0.93] tracking-[-0.03em] max-w-5xl mb-8 lg:mb-10">
+            Desarrollo web{" "}
+            <br className="hidden lg:block" />
+            para{" "}
+            <span className="text-violet">artistas</span>
+            {", "}
+            <br className="hidden lg:block" />
+             y proyectos{" "}
+            <span className="text-violet">creativos</span>
+          </h1>
+
+          <HeroRecording />
+        </div>
 
         {/* Subheadline + scroll cue */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
