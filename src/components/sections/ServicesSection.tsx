@@ -15,22 +15,24 @@ const services = [
       "Música y enlaces de escucha",
       "Fechas y presentaciones",
       "Contacto y redes sociales",
+      "Diseño personalizado y adaptado a la identidad del proyecto",
     ],
     price: "Desde USD 320",
   },
   {
   
-    title: "Portfolio creativo",
+    title: "Portfolio de proyectos visuales",
     description:
-      "Un sitio editorial para mostrar trabajos, proyectos y trayectoria con una presencia digital cuidada y adaptada a la identidad de cada proyecto.",
+      "Un espacio visual para presentar tus mejores trabajos, destacar tu estilo y mostrar tus proyectos de forma cuidada y profesional",
     image: "/demos/mockup-portfolio-visual.png",
     url: "https://art-visual-portfolio-demo.vercel.app/",
-    tags: ["Portfolio", "Editorial", "Artistas visuales"],
+    tags: ["Fotografía", "Editorial", "Artistas visuales"],
     includes: [
       "Presentación personal o de proyecto",
       "Selección de trabajos destacados",
       "información sobre tu práctica y servicios",
       "Contacto y redes sociales",
+      "Diseño personalizado y adaptado a la identidad del proyecto",
     ],
     price: "Desde USD 320",
   },

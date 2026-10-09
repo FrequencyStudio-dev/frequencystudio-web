@@ -10,6 +10,7 @@ const tools = [
     tags: ["Shows", "Presupuestos", "Gestión"],
     status: "Beta",
     statusType: "available",
+    price: "Gratis",
     href: "https://calculadoracache.vercel.app",
     cta: "Probar herramienta",
   },
@@ -21,6 +22,7 @@ const tools = [
     tags: ["Setlists", "Shows", "Repertorio"],
     status: "Próximamente",
     statusType: "soon",
+    price: null,
     href: null,
     cta: null,
   },
@@ -85,13 +87,22 @@ function ToolCard({
           </div>
         </div>
 
-        <h3 className="font-display text-display-md leading-none tracking-[-0.02em] text-ink transition-colors duration-300 group-hover:text-violet">
-          {tool.title}
-        </h3>
+        <div className="flex flex-wrap items-center gap-4">
+          <h3 className="font-display text-display-md leading-none tracking-[-0.02em] text-ink transition-colors duration-300 group-hover:text-violet">
+            {tool.title}
+          </h3>
 
+          {tool.price && (
+            <span className="font-mono text-label uppercase tracking-widest text-ink-muted text-violet">
+              {tool.price}
+            </span>
+          )}
+        </div>
         <p className="mt-3 max-w-xl text-body-sm leading-relaxed text-ink-muted">
           {tool.description}
         </p>
+
+        
 
         {tool.href ? (
           <a
@@ -130,8 +141,7 @@ export function ToolsSection() {
             </h2>
 
             <p className="max-w-md text-body-sm leading-relaxed text-ink-muted">
-              Productos digitales creados para resolver tareas concretas y
-              simplificar el trabajo de artistas y proyectos musicales.
+              Herramientas digitales prácticas para la gestión de tu proyecto.
             </p>
           </div>
         </div>
