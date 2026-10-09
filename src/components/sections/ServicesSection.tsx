@@ -1,78 +1,192 @@
-import { SectionLabel, AnimateOnScroll, VioletDot } from "@/components/ui";
-import type { Service } from "@/types";
+import { SectionLabel } from "@/components/ui";
+import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
 
-const services: Service[] = [
+const services = [
   {
-    title: "Sitios Web",
+    title: "Landing para artista",
     description:
-       "Sitios web personalizados para artistas y proyectos creativos que buscan una presencia digital profesional y una forma clara de presentar su trabajo.",
-   
+      "Una landing pensada para músicos y bandas que necesitan presentar su proyecto, destacar un lanzamiento y centralizar su información en un solo lugar.",
+    image: "/demos/artist-demo-landing-2.png",
+    url: "https://artistdemo.vercel.app/",
+    tags: ["Artistas", "Bandas", "Lanzamientos"],
+    includes: [
+      "Presentación del artista o banda",
+      "Lanzamiento destacado",
+      "Música y enlaces de escucha",
+      "Fechas y presentaciones",
+      "Contacto y redes sociales",
+      "Diseño personalizado y adaptado a la identidad del proyecto",
+    ],
+    price: "Desde USD 320",
   },
   {
-    title: "Landing Pages de Lanzamiento",
+  
+    title: "Portfolio de proyectos visuales",
     description:
-       "Páginas diseñadas para presentar lanzamientos, eventos y nuevos proyectos, centralizando la información y facilitando la promoción.",
-   
-  },
-  {
-    title: "Herramientas Digitales",
-    description:
-       "Aplicaciones y herramientas desarrolladas para simplificar tareas técnicas, administrativas y de gestión.",
-   
+      "Un espacio visual para presentar tus mejores trabajos, destacar tu estilo y mostrar tus proyectos de forma cuidada y profesional",
+    image: "/demos/mockup-portfolio-visual.png",
+    url: "https://art-visual-portfolio-demo.vercel.app/",
+    tags: ["Fotografía", "Editorial", "Artistas visuales"],
+    includes: [
+      "Presentación personal o de proyecto",
+      "Selección de trabajos destacados",
+      "información sobre tu práctica y servicios",
+      "Contacto y redes sociales",
+      "Diseño personalizado y adaptado a la identidad del proyecto",
+    ],
+    price: "Desde USD 320",
   },
 ];
 
-function ServiceRow({ service, index }: { service: Service; index: number }) {
+function BrowserMockup({
+  image,
+  title,
+}: {
+  image: string;
+  title: string;
+}) {
   return (
-    <AnimateOnScroll delay={index * 120}>
-      <div className="group grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-0 py-10 lg:py-12 border-b border-border hover:border-violet/30 transition-colors duration-500 cursor-pointer">
-        {/* Index */}
-        <div className="lg:col-span-1 flex items-start">
-          <span className="font-mono text-label text-ink-dim/40 mt-1">
-            {String(index + 1).padStart(2, "0")}
-          </span>
+    <div data-rec-reveal className="overflow-hidden border border-border bg-surface">
+      {/* Browser bar */}
+      <div className="flex h-10 items-center border-b border-border px-4">
+        <div className="flex gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
+          <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
+          <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
         </div>
 
-        {/* Title */}
-        <div className="lg:col-span-4 flex items-start">
-          <h3 className="font-display text-display-md text-ink group-hover:text-violet transition-colors duration-300 leading-tight">
+        <div className="mx-auto hidden border border-border-light px-8 py-1 font-mono text-[9px] uppercase tracking-widest text-ink-dim sm:block">
+          {title}
+        </div>
+
+        <span className="font-mono text-[9px] text-ink-dim">
+          ↗
+        </span>
+      </div>
+
+      {/* Screenshot */}
+      <div className="aspect-[16/10] overflow-hidden bg-base">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+        />
+      </div>
+    </div>
+  );
+}
+
+function ServiceCard({
+  service,
+  reverse = false,
+}: {
+  service: (typeof services)[number];
+  reverse?: boolean;
+}) {
+  return (
+    <article className="group  py-12 lg:py-20">
+      <div
+        className={`grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start lg:gap-12 ${
+          reverse ? "lg:[&>*:first-child]:order-2" : ""
+        }`}
+      >
+        {/* Mockup */}
+        <div className="lg:col-span-7">
+          <BrowserMockup image={service.image} title={service.title} />
+        </div>
+
+        {/* Information */}
+        <div className="lg:col-span-5 lg:pt-2">
+          <div className="mb-8 flex items-center justify-between">
+
+            <span className="font-mono text-label uppercase tracking-widest text-ink-muted">
+              {service.price}
+            </span>
+          </div>
+
+          <h3 className="max-w-lg font-display text-display-lg leading-[0.95] tracking-[-0.03em] text-ink">
             {service.title}
           </h3>
-        </div>
 
-        {/* Description */}
-        <div className="lg:col-span-4 flex items-start">
-          <p className="text-ink-muted text-body-sm leading-relaxed">
+          <p className="mt-6 max-w-md text-body-sm leading-relaxed text-ink-muted">
             {service.description}
           </p>
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            {service.tags.map((tag) => (
+              <span
+                key={tag}
+                className="border border-white/20 px-3 py-2 font-mono text-[10px] uppercase tracking-widest text-ink-muted"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-10 border-t border-border pt-6">
+            <span className="font-mono text-label uppercase tracking-[0.15em] text-ink-muted">
+              Incluye
+            </span>
+
+            <ul className="mt-4 space-y-3">
+              {service.includes.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-body-sm text-ink-muted"
+                >
+                  <span className="mt-[7px] h-1.5 w-1.5 shrink-0 bg-violet" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <a
+            href= {service.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 inline-flex items-center gap-3 border border-violet px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-violet"
+          >
+            Ver demo
+            <span>↗</span>
+          </a>
         </div>
-
-        {/* Details */}
-
       </div>
-    </AnimateOnScroll>
+    </article>
   );
 }
 
 export function ServicesSection() {
   return (
-    <section id="servicios" className="py-section bg-base border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="mb-16">
-          
-            <SectionLabel label="Servicios" />
-            <h2 className="font-display text-display-xl text-ink max-w-3xl leading-tight">
-              Lo que{" "}
-              <span className="text-violet">construimos</span>{" "}
-              juntos
+    <section
+      id="servicios"
+      className="relative border-t border-border py-section"
+    >
+      <SignalDivider seed={3} />
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+        {/* Header */}
+        <div className="mb-8 lg:mb-10">
+  
+          <div className="mt-5 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <h2 className="max-w-4xl font-display text-display-xl leading-[0.9] tracking-[-0.04em] text-ink">
+              Servicios
             </h2>
-          
+
+            <p className="max-w-md text-body-sm leading-relaxed text-ink-muted">
+              Explorá nuestras demos y descubrí qué podemos
+              construir para tu proyecto.
+            </p>
+          </div>
         </div>
 
-        {/* Services list */}
+        {/* Services */}
         <div>
-          {services.map((service, i) => (
-            <ServiceRow key={service.title} service={service} index={i} />
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              service={service}
+              reverse={index % 2 !== 0}
+            />
           ))}
         </div>
       </div>

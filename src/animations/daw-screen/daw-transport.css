@@ -1,0 +1,83 @@
+/* ==========================================================================
+   DAW screen — transport bar with the scroll-driven timecode.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+/* Reveal the bar (it renders with the `hidden` attribute) */
+.daw-transport[hidden] {
+  display: flex;
+}
+
+.daw-transport {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--daw-transport-h);
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 12px;
+  border-top: 1px solid var(--daw-line-strong);
+  background: var(--daw-panel);
+  color: var(--daw-text);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+/* Stop square that morphs into a play triangle */
+.daw-transport__state {
+  flex: none;
+  width: 7px;
+  height: 8px;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  transition: clip-path 0.2s ease;
+}
+
+.daw-transport__time {
+  margin-left: -0.625rem;
+  color: #555555;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  transition: color 0.3s ease;
+}
+
+.daw-transport__rec {
+  margin-left: auto;
+  color: var(--daw-text-dim);
+}
+
+.daw-transport__meta {
+  color: var(--daw-text-dim);
+}
+
+/* Playing (while scrolling) */
+.daw-transport[data-playing="true"] {
+  color: var(--daw-violet);
+}
+
+.daw-transport[data-playing="true"] .daw-transport__state {
+  clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%);
+}
+
+.daw-transport[data-playing="true"] .daw-transport__time {
+  color: var(--daw-violet-soft);
+}
+
+@media (max-width: 767px) {
+  .daw-transport__rec,
+  .daw-transport__meta {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .daw-transport,
+  .daw-transport__state,
+  .daw-transport__time {
+    transition: none;
+  }
+}

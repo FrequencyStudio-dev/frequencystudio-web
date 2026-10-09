@@ -1,145 +1,86 @@
-import { SectionLabel, AnimateOnScroll, Tag } from "@/components/ui";
 import type { Project } from "@/types";
+import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
+import { HoverWave } from "@/animations/recorded-media/HoverWave";
 
 const projects: Project[] = [
   {
-    id: "01",
-    title: "Kurtco Producciones",
-    category: "Productora",
-    description:
-      "Proyecto colectivo orientado a la gestión, producción y difusión de músicos y artistas emergentes",
-    url: "https://kurtcoproducciones.com/",
-    accentColor: "#9340ff",
-    index: "01",
-    image: "/projects/kurtco-producciones.png",
-  },
-  {
-    id: "02",
     title: "Joy Amorín",
     category: "Música",
-    description:
-      "Artista musical independiente y creadora digital.",
+    description: "Artista musical independiente y creadora digital.",
     url: "https://joyamorin.com/",
     accentColor: "#c084fc",
-    index: "02",
-    image: "/projects/home.png",
+    image: "/projects/joy-amorin.png",
   },
-  {
-    id: "03",
-    title: "El asilo de la bestia",
-    category: "Música",
-    description:
-      "Banda de rock/metal.",
+   {
+    title: "Carina da Costa",
+    category: "Noticias/fotografía",
+    description: "Portfolio editorial.",
     url: "https://elasilodelabestia.com/",
     accentColor: "#c084fc",
-    index: "03",
-    image: "/projects/el-asilo-de-la-bestia.png",
+    image: "/projects/editorial.png",
   },
-  
 ];
 
-function ProjectCard({ project }: { project: Project; }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
-    <AnimateOnScroll
-      className="group relative flex flex-col"
-      delay={parseInt(project.id) * 100}
-    >
-      <div className="relative overflow-hidden border border-border hover:border-violet/40 transition-all duration-500 cursor-pointer">
+    <article className="group">
+      <a
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-rec-reveal
+        className="relative block aspect-[16/10] overflow-hidden bg-surface"
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+        />
 
-        {/* Screenshot visual area */}
-        <div
-          className="relative w-full bg-surface overflow-hidden h-[420px] lg:h-[320px]"
-        >
-          {/* Screenshot */}
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-          />
+        <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
 
-          {/* Hover overlay */}
-          <div className="absolute inset-0 bg-violet/0 group-hover:bg-violet/5 transition-all duration-500" />
+        <span className="absolute bottom-5 right-5 translate-y-2 border border-white/20 bg-base/80 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.15em] text-ink opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          Ver proyecto ↗
+        </span>
+      </a>
 
-          {/* Project index */}
-          <div className="absolute top-4 left-4">
-            <span
-              className="font-mono text-[10px] tracking-[0.2em] uppercase px-2 py-1 border"
-              style={{
-                borderColor: `${project.accentColor}40`,
-                color: project.accentColor,
-                background: `${project.accentColor}08`,
-              }}
-            >
-              {project.index}
-            </span>
-          </div>
-        </div>
+      <HoverWave seed={project.title} />
 
-        {/* Card info */}
-        <div className="p-6 lg:p-8 border-t border-border bg-surface/50">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <div>
-              <span className="font-mono text-label text-ink-dim uppercase tracking-widest block mb-1.5">
-                {project.category}
-              </span>
-              <h3 className="font-display text-display-md text-ink group-hover:text-violet transition-colors duration-300">
-                {project.title}
-              </h3>
-            </div>
+      <div className="mt-5">
+        <span className="mb-2 block font-mono text-label uppercase tracking-widest text-ink-dim">
+          {project.category}
+        </span>
 
-          </div>
+        <h3 className="font-display text-display-md leading-none tracking-tight text-ink transition-colors duration-300 group-hover:text-violet">
+          {project.title}
+        </h3>
 
-          <p className="text-ink-muted text-body-sm mb-5 leading-relaxed">
-            {project.description}
-          </p>
-
-          <div className="flex items-center justify-between">
-
-            <div className="flex items-center gap-2 text-ink-dim group-hover:text-violet transition-colors duration-300">
-              <a 
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2"
-              >
-              <span className="font-mono text-label uppercase tracking-wider">
-                Ver proyecto
-              </span>
-              <svg
-                className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-                viewBox="0 0 14 14"
-                fill="none"
-              >
-                <path
-                  d="M2 12L12 2M12 2H5M12 2v7"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              </a>
-            </div>
-          </div>
-        </div>
+        <p className="mt-3 max-w-xl text-body-sm leading-relaxed text-ink-muted">
+          {project.description}
+        </p>
       </div>
-    </AnimateOnScroll>
+    </article>
   );
 }
 
 export function ProjectsSection() {
   return (
-    <section id="proyectos" className="py-section bg-base">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <SectionLabel label="Proyectos" />
+    <section id="todos-los-proyectos" className="py-section">
+      <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+        <div className="relative mb-16 border-t border-border pt-5 lg:mb-24">
+          <SignalDivider seed={2} />
 
-        {/* Remaining projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="mt-5 max-w-4xl font-display text-display-xl leading-[0.9] tracking-[-0.04em] text-ink">
+            Otros proyectos
+       
+          
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-x-6 gap-y-16 md:grid-cols-2 lg:gap-y-20">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.title} project={project} />
           ))}
-
-          {/* CTA card */}
         </div>
       </div>
     </section>

@@ -1,0 +1,77 @@
+/* ==========================================================================
+   DAW screen — bar ruler fixed under the nav.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+/* Reveal the ruler (it renders with the `hidden` attribute) */
+.daw-ruler[hidden] {
+  display: flex;
+}
+
+/* --- Ruler --------------------------------------------------------------- */
+
+.daw-ruler {
+  position: absolute;
+  top: var(--daw-top);
+  left: 0;
+  right: 0;
+  height: var(--daw-ruler-h);
+  border-top: 1px solid var(--daw-line-strong);
+  border-bottom: 1px solid var(--daw-line-strong);
+  background: var(--daw-panel);
+}
+
+.daw-ruler__corner {
+  flex: none;
+  width: var(--daw-head-w);
+  padding: 7px 12px 0;
+  overflow: hidden;
+  border-right: 1px solid var(--daw-line-strong);
+  color: var(--daw-text-dim);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+.daw-ruler__scale {
+  position: relative;
+  flex: 1;
+  display: flex;
+}
+
+.daw-ruler__bar {
+  position: relative;
+  flex: 1 1 0;
+}
+
+/* Bar tick; every 4th bar (the labelled ones) gets a full-height tick */
+.daw-ruler__bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 5px;
+  background: var(--daw-line-strong);
+}
+
+.daw-ruler__bar:nth-child(4n + 1)::before {
+  height: 100%;
+}
+
+.daw-ruler__label {
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  color: var(--daw-text);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 767px) {
+  .daw-ruler__corner,
+  .daw-ruler__bar:nth-child(8n + 5) .daw-ruler__label {
+    display: none;
+  }
+}

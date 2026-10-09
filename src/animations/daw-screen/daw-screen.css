@@ -1,0 +1,160 @@
+/* ==========================================================================
+   DAW screen — base layer: tracks, track headers, grid and parallax.
+   Without this file none of the DAW screen parts show up.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+.daw-screen {
+  /* Overall subtlety of the whole screen (0 = invisible, 1 = as designed) */
+  --daw-intensity: 1;
+
+  /* Screens the tracks travel over the whole page (higher = stronger parallax).
+     Keep the track count in DawScreen.tsx around 8 × (1 + travel). */
+  --daw-travel: 2;
+
+  /* Layout: ruler sits right under the nav (h-16 / lg:h-20) */
+  --daw-top: 64px;
+  --daw-ruler-h: 24px;
+  --daw-transport-h: 30px;
+  --daw-head-w: 0px;
+
+  --daw-line: rgba(255, 255, 255, 0.035);
+  --daw-line-strong: rgba(255, 255, 255, 0.06);
+  --daw-panel: rgba(255, 255, 255, 0.012);
+  --daw-text: #444444;
+  --daw-text-dim: #333333;
+  --daw-violet: var(--color-violet, #9340ff);
+  --daw-violet-soft: var(--color-violet-soft, #c084fc);
+
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  opacity: var(--daw-intensity);
+  font-family: var(--font-mono, monospace);
+}
+
+/* Reveal the screen (it renders with the `hidden` attribute) */
+.daw-screen[hidden] {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .daw-screen {
+    --daw-head-w: 136px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .daw-screen {
+    --daw-top: 80px;
+  }
+}
+
+/* --- Tracks viewport + parallax session --------------------------------- */
+
+.daw-tracks {
+  position: absolute;
+  top: calc(var(--daw-top) + var(--daw-ruler-h));
+  bottom: var(--daw-transport-h);
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+/* Taller than the viewport by --daw-travel screens, scrolled through slowly */
+.daw-session {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc((1 + var(--daw-travel)) * 100%);
+  display: flex;
+  flex-direction: column;
+  transform: translate3d(
+    0,
+    calc(var(--daw-progress, 0) * var(--daw-travel) / (1 + var(--daw-travel)) * -100%),
+    0
+  );
+  will-change: transform;
+}
+
+.daw-track {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  border-bottom: 1px solid var(--daw-line);
+}
+
+.daw-track:nth-child(even) {
+  background: var(--daw-panel);
+}
+
+/* --- Track headers ------------------------------------------------------- */
+
+.daw-track__head {
+  flex: none;
+  width: var(--daw-head-w);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  overflow: hidden;
+  border-right: 1px solid var(--daw-line-strong);
+  color: var(--daw-text);
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.daw-track__num {
+  margin-right: 8px;
+  color: var(--daw-text-dim);
+}
+
+.daw-track__buttons {
+  display: flex;
+  gap: 3px;
+}
+
+.daw-track__btn {
+  width: 13px;
+  height: 12px;
+  border: 1px solid var(--daw-line-strong);
+  border-radius: 2px;
+  color: var(--daw-text-dim);
+  font-size: 7px;
+  line-height: 10px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .daw-track__head {
+    display: none;
+  }
+}
+
+/* --- Lane area: bar grid aligned with the ruler ------------------------- */
+
+.daw-session__lanes {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--daw-head-w);
+  right: 0;
+  background-image:
+    linear-gradient(to right, var(--daw-line-strong) 1px, transparent 1px),
+    linear-gradient(to right, var(--daw-line) 1px, transparent 1px);
+  background-size:
+    calc(100% / (var(--daw-bars) / 4)) 100%,
+    calc(100% / var(--daw-bars)) 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .daw-session {
+    transform: none;
+  }
+}
