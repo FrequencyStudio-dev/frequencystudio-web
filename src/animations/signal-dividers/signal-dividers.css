@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Signal dividers — section borders that get recorded as an audio signal
+   when they scroll into view. Without this file they stay plain borders.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+.signal-divider {
+  --signal-duration: 2.4s;
+  --signal-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --signal-trail: rgba(147, 64, 255, 0.35);
+  --signal-bursts: rgba(192, 132, 252, 0.75);
+  --signal-head: rgba(245, 245, 240, 0.6);
+
+  /* Centred on the parent's border-top (which sits just above its padding box) */
+  position: absolute;
+  top: -12.5px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  /* Keeps the travelling head from widening the page */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Reveal (it renders with the `hidden` attribute) */
+.signal-divider[hidden] {
+  display: block;
+}
+
+.signal-divider__signal {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  clip-path: inset(0 100% 0 0);
+}
+
+.signal-divider__trail {
+  stroke: var(--signal-trail);
+  stroke-width: 1;
+}
+
+.signal-divider__bursts {
+  stroke: var(--signal-bursts);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+/* Record head riding the drawing edge */
+.signal-divider__head {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.signal-divider__head::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: -1px;
+  width: 1px;
+  background: var(--signal-head);
+}
+
+/* --- Drawn (set by SignalDivider.tsx when it enters the viewport) -------- */
+
+.signal-divider[data-drawn="true"] .signal-divider__signal {
+  animation: signal-divider-draw var(--signal-duration) var(--signal-ease) both;
+}
+
+.signal-divider[data-drawn="true"] .signal-divider__head {
+  animation:
+    signal-divider-head var(--signal-duration) var(--signal-ease) both,
+    signal-divider-head-out 0.5s ease var(--signal-duration) both;
+}
+
+@keyframes signal-divider-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes signal-divider-head {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes signal-divider-head-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Reduced motion: already drawn, no head */
+@media (prefers-reduced-motion: reduce) {
+  .signal-divider__signal,
+  .signal-divider[data-drawn="true"] .signal-divider__signal {
+    clip-path: none;
+    animation: none;
+  }
+
+  .signal-divider__head {
+    display: none;
+  }
+}

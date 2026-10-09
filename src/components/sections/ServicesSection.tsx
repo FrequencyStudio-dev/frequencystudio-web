@@ -1,4 +1,5 @@
 import { SectionLabel } from "@/components/ui";
+import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
 
 const services = [
   {
@@ -43,7 +44,7 @@ function BrowserMockup({
   title: string;
 }) {
   return (
-    <div className="overflow-hidden border border-border bg-surface">
+    <div data-rec-reveal className="overflow-hidden border border-border bg-surface">
       {/* Browser bar */}
       <div className="flex h-10 items-center border-b border-border px-4">
         <div className="flex gap-1.5">
@@ -157,8 +158,9 @@ export function ServicesSection() {
   return (
     <section
       id="servicios"
-      className="border-t border-border py-section"
+      className="relative border-t border-border py-section"
     >
+      <SignalDivider seed={3} />
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         {/* Header */}
         <div className="mb-8 lg:mb-10">

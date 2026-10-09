@@ -1,4 +1,5 @@
 import { SectionLabel } from "@/components/ui";
+import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
 
 const tools = [
   {
@@ -33,7 +34,7 @@ function ToolMockup({
   title: string;
 }) {
   return (
-    <div className="overflow-hidden border border-border bg-surface">
+    <div data-rec-reveal className="overflow-hidden border border-border bg-surface">
       <div className="flex h-9 items-center border-b border-border px-3">
         <div className="flex gap-1.5">
           <span className="h-2 w-2 rounded-full bg-ink-dim/50" />
@@ -114,7 +115,8 @@ function ToolCard({
 
 export function ToolsSection() {
   return (
-    <section id="herramientas" className="bg-base py-section">
+    <section id="herramientas" className="relative bg-base py-section">
+      <SignalDivider seed={4} />
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         {/* Header */}
         <div className="mb-12 lg:mb-16">

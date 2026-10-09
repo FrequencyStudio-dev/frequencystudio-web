@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Hover wave — a small waveform under a project's image that plays through
+   while the project is hovered. Sits in the gap between image and text.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+.rec-hover-wave {
+  --hover-wave-play: 6s;
+  --hover-wave-base: rgba(245, 245, 240, 0.14);
+  --hover-wave-played: rgba(147, 64, 255, 0.8);
+  --hover-wave-head: rgba(245, 245, 240, 0.7);
+
+  /* Takes no space: the track hangs into the gap below the image */
+  position: relative;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Reveal (it renders with the `hidden` attribute) */
+.rec-hover-wave[hidden] {
+  display: block;
+}
+
+.rec-hover-wave__track {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  /* Keeps the travelling head from widening the page (vertically it may overhang) */
+  overflow-x: clip;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.rec-hover-wave__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--hover-wave-base);
+}
+
+.rec-hover-wave__played {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.rec-hover-wave__played .rec-hover-wave__svg {
+  fill: var(--hover-wave-played);
+}
+
+.rec-hover-wave__head {
+  position: absolute;
+  inset: 0;
+}
+
+.rec-hover-wave__head::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -1px;
+  width: 1px;
+  background: var(--hover-wave-head);
+}
+
+/* --- Playing while the project (the wave's parent) is hovered ------------ */
+
+:hover > .rec-hover-wave .rec-hover-wave__track {
+  opacity: 1;
+}
+
+:hover > .rec-hover-wave .rec-hover-wave__played {
+  animation: rec-hover-wave-play var(--hover-wave-play) linear forwards;
+}
+
+:hover > .rec-hover-wave .rec-hover-wave__head {
+  animation: rec-hover-wave-head var(--hover-wave-play) linear forwards;
+}
+
+@keyframes rec-hover-wave-play {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes rec-hover-wave-head {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Reduced motion: the wave shows on hover but doesn't play */
+@media (prefers-reduced-motion: reduce) {
+  :hover > .rec-hover-wave .rec-hover-wave__played,
+  :hover > .rec-hover-wave .rec-hover-wave__head {
+    animation: none;
+  }
+
+  .rec-hover-wave__head {
+    display: none;
+  }
+
+  .rec-hover-wave__track {
+    transition: none;
+  }
+}

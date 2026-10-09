@@ -1,4 +1,6 @@
 import type { Project } from "@/types";
+import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
+import { HoverWave } from "@/animations/recorded-media/HoverWave";
 
 const projects: Project[] = [
   {
@@ -26,6 +28,7 @@ function ProjectCard({ project }: { project: Project }) {
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
+        data-rec-reveal
         className="relative block aspect-[16/10] overflow-hidden bg-surface"
       >
         <img
@@ -40,6 +43,8 @@ function ProjectCard({ project }: { project: Project }) {
           Ver proyecto ↗
         </span>
       </a>
+
+      <HoverWave seed={project.title} />
 
       <div className="mt-5">
         <span className="mb-2 block font-mono text-label uppercase tracking-widest text-ink-dim">
@@ -62,7 +67,8 @@ export function ProjectsSection() {
   return (
     <section id="todos-los-proyectos" className="py-section">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-        <div className="mb-16 border-t border-border pt-5 lg:mb-24">
+        <div className="relative mb-16 border-t border-border pt-5 lg:mb-24">
+          <SignalDivider seed={2} />
 
           <h2 className="mt-5 max-w-4xl font-display text-display-xl leading-[0.9] tracking-[-0.04em] text-ink">
             Otros proyectos

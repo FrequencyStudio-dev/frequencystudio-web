@@ -1,4 +1,4 @@
-// Generates fake-but-believable audio peaks for the hero recording clip.
+// Generates fake-but-believable audio peaks for the animations' waveforms.
 // Seeded, so the same seed always produces the same shape.
 
 export type WaveKind = "vocal" | "drums" | "bass" | "guitar" | "pad";
@@ -15,7 +15,8 @@ const JITTER: Record<WaveKind, number> = {
   pad: 0.1,
 };
 
-function mulberry32(seed: number) {
+// Small seeded PRNG: returns a function that yields numbers in [0, 1)
+export function mulberry32(seed: number) {
   let a = seed >>> 0;
   return () => {
     a = (a + 0x6d2b79f5) >>> 0;

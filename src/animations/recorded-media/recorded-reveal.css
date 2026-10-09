@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Recorded reveal — project images and mockups (`data-rec-reveal`) get
+   recorded in, left to right behind a record head, as they scroll into view.
+   To disable: comment out this file's import in src/app/layout.tsx.
+   ========================================================================== */
+
+:root {
+  --rec-reveal-duration: 1.6s;
+  --rec-reveal-ease: cubic-bezier(0.45, 0, 0.2, 1);
+}
+
+/* Probe: lets RecordedReveal.tsx know this file is loaded */
+.rec-reveal-probe[hidden] {
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+[data-rec-reveal] {
+  position: relative;
+}
+
+/* Waiting below the fold. Hidden with opacity, not clip-path: Chrome's
+   IntersectionObserver counts a fully clipped element as not visible. */
+[data-rec-reveal][data-rec-revealed="pending"] {
+  opacity: 0;
+}
+
+/* Recording in */
+[data-rec-reveal][data-rec-revealed="true"] {
+  animation: rec-reveal var(--rec-reveal-duration) var(--rec-reveal-ease)
+    var(--rec-reveal-delay, 0s) both;
+}
+
+/* Record head: a light edge with a violet sweep trailing it */
+[data-rec-reveal][data-rec-revealed="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-right: 1px solid rgba(245, 245, 240, 0.7);
+  background: linear-gradient(to right, transparent 70%, rgba(147, 64, 255, 0.28));
+  animation:
+    rec-reveal-head var(--rec-reveal-duration) var(--rec-reveal-ease) var(--rec-reveal-delay, 0s)
+      both,
+    rec-reveal-head-out 0.5s ease calc(var(--rec-reveal-delay, 0s) + var(--rec-reveal-duration))
+      both;
+}
+
+@keyframes rec-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes rec-reveal-head {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rec-reveal-head-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rec-reveal][data-rec-revealed] {
+    opacity: 1;
+    clip-path: none;
+    animation: none;
+  }
+
+  [data-rec-reveal][data-rec-revealed]::after {
+    display: none;
+  }
+}

@@ -1,5 +1,7 @@
 
 import type { Project } from "@/types";
+import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
+import { HoverWave } from "@/animations/recorded-media/HoverWave";
 
 const projects: Project[] = [
   
@@ -36,6 +38,7 @@ function ProjectImage({
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
+      data-rec-reveal
       className={`group relative block overflow-hidden bg-surface ${className}`}
     >
       <img
@@ -81,7 +84,8 @@ export function FeaturedProjects() {
     <section id="proyectos" className="py-section">
       <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
         {/* Section heading */}
-        <div className="mb-16 border-t border-border pt-5 lg:mb-24">
+        <div className="relative mb-16 border-t border-border pt-5 lg:mb-24">
+          <SignalDivider seed={1} />
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
 
@@ -105,6 +109,7 @@ export function FeaturedProjects() {
               project={projects[0]}
               className="aspect-[16/10]"
             />
+            <HoverWave seed={projects[0].title} />
             <ProjectInfo project={projects[0]} />
           </article>
 
@@ -114,6 +119,7 @@ export function FeaturedProjects() {
               project={projects[1]}
               className="aspect-[16/10]"
             />
+            <HoverWave seed={projects[1].title} />
             <ProjectInfo project={projects[1]} />
           </article>
 

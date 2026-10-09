@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { WAVE_HEIGHT, WAVE_WIDTH, generatePeaks, peaksToPath, type WaveKind } from "./waveform-data";
+import { WAVE_HEIGHT, WAVE_WIDTH, generatePeaks, peaksToPath, type WaveKind } from "@/animations/shared/waveform-data";
 
 // A single DAW track next to the hero title where takes get recorded one after
 // another. The recording cycle lives in hero-recording.css; the root renders
