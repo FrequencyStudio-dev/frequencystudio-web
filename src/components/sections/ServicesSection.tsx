@@ -7,7 +7,7 @@ const services = [
     description:
       "Una landing pensada para músicos y bandas que necesitan presentar su proyecto, destacar un lanzamiento y centralizar su información en un solo lugar.",
     image: "/demos/artist-demo-landing-2.png",
-    url: "https://artistdemo.vercel.app/",
+    url: "https://musicianartistdemo.vercel.app/",
     tags: ["Artistas", "Bandas", "Lanzamientos"],
     includes: [
       "Presentación del artista o banda",
