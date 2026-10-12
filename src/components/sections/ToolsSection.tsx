@@ -8,7 +8,7 @@ const tools = [
       "Calculá cuánto cobrar por tu próximo show considerando gastos, cantidad de integrantes y objetivo de ganancia.",
     image: "/herramientas/calculadora-cache.png",
     tags: ["Shows", "Presupuestos", "Gestión"],
-    status: "Beta",
+    status: "Disponible",
     statusType: "available",
     price: "Gratis",
     href: "https://calculadoracache.vercel.app",

@@ -3,7 +3,7 @@ import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
 
 const services = [
   {
-    title: "Landing para artista",
+    title: "Landing para artistas musicales y bandas",
     description:
       "Una landing pensada para músicos y bandas que necesitan presentar su proyecto, destacar un lanzamiento y centralizar su información en un solo lugar.",
     image: "/demos/artist-demo-landing-2.png",
