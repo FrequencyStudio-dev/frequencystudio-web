@@ -1,4 +1,9 @@
-import { SectionLabel, AnimateOnScroll, VioletDot } from "@/components/ui";
+import {
+  SectionLabel,
+  AnimateOnScroll,
+  VioletDot,
+  ConsultButton,
+} from "@/components/ui";
 import type { PricingTier, ExtraService } from "@/types";
 
 const tiers: PricingTier[] = [
@@ -86,53 +91,6 @@ const extras: ExtraService[] = [
   },
 ];
 
-const WHATSAPP = "59894399771";
-
-const waLink = (text: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
-
-function Arrow() {
-  return (
-    <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-      <path
-        d="M2 6h8M6 2l4 4-4 4"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ConsultButton({
-  href,
-  label,
-  variant = "outline",
-  className = "",
-}: {
-  href: string;
-  label: string;
-  variant?: "solid" | "outline";
-  className?: string;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Consultar — ${label}`}
-      className={`inline-flex items-center justify-center gap-2 px-5 py-3 font-mono text-label uppercase tracking-widest transition-all duration-300 ${
-        variant === "solid"
-          ? "bg-violet text-ink hover:bg-violet/80"
-          : "border border-violet/40 text-violet hover:bg-violet/10 hover:border-violet"
-      } ${className}`}
-    >
-      Consultar
-      <Arrow />
-    </a>
-  );
-}
-
 function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
   return (
     <AnimateOnScroll className="h-full" delay={index * 100}>
@@ -200,7 +158,7 @@ function TierCard({ tier, index }: { tier: PricingTier; index: number }) {
           <p className="font-display text-2xl text-ink">{tier.priceValue}</p>
 
           <ConsultButton
-            href={waLink(`Hola! Me interesa el plan ${tier.name}`)}
+            message={`Hola! Me interesa el plan ${tier.name}`}
             label={tier.name}
             variant={tier.featured ? "solid" : "outline"}
             className="mt-6 w-full"
@@ -234,7 +192,7 @@ function ExtraRow({ extra, index }: { extra: ExtraService; index: number }) {
             </span>
           )}
           <ConsultButton
-            href={waLink(`Hola! Me interesa: ${extra.title}`)}
+            message={`Hola! Me interesa: ${extra.title}`}
             label={extra.title}
           />
         </div>
@@ -300,7 +258,7 @@ export function PricingSection() {
             </p>
 
             <ConsultButton
-              href={waLink("Hola! Quiero consultar sobre mi proyecto")}
+              message={"Hola! Quiero consultar sobre mi proyecto"}
               label="¿No sabés qué opción elegir?"
               variant="solid"
               className="mt-6 w-full sm:w-auto"

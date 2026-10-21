@@ -1,7 +1,18 @@
-import { SectionLabel } from "@/components/ui";
+import { AnimateOnScroll, ConsultButton } from "@/components/ui";
 import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
+import type { ExtraService } from "@/types";
 
-const services = [
+type Service = {
+  title: string;
+  description: string;
+  image: string;
+  url: string | null;
+  tags: string[];
+  includes: string[];
+  price: string;
+};
+
+const services: Service[] = [
   {
     title: "Landing para artistas musicales y bandas",
     description:
@@ -35,6 +46,47 @@ const services = [
       "Diseño personalizado y adaptado a la identidad del proyecto",
     ],
     price: "Desde USD 320",
+  },
+  {
+    title: "Sitio web completo para artistas",
+    description:
+      "Una web multipágina para artistas y bandas con actividad regular, lanzamientos y fechas, que necesitan una presencia más completa y profesional.",
+    // TODO: reemplazar por captura de la demo multipágina cuando esté lista
+    image: "/demos/artist-demo-landing.png",
+    url: null,
+    tags: ["Artistas", "Bandas", "Multipágina"],
+    includes: [
+      "Inicio, biografía y discografía",
+      "Fechas y shows",
+      "Contacto y redes sociales",
+      "Integración con plataformas de música",
+      "Diseño personalizado y adaptado a la identidad del proyecto",
+    ],
+    price: "Desde USD 600",
+  },
+];
+
+const moreServices: ExtraService[] = [
+  {
+    title: "Estudios, salas y docentes",
+    description:
+      "Webs para estudios de grabación, salas de ensayo y docentes de música, con tarifas, equipamiento, portfolio y reservas o agenda.",
+  },
+  {
+    title: "Sellos, colectivos y productoras",
+    description:
+      "Una estructura para varios artistas o proyectos, con roster, lanzamientos y novedades.",
+    price: "Desde USD 1.800",
+  },
+  {
+    title: "Festivales y ciclos",
+    description:
+      "Sitios para festivales y ciclos de eventos, con lineup, horarios, entradas y galería.",
+  },
+  {
+    title: "Tienda de merch y discos",
+    description:
+      "Venta online de merch, vinilos y ediciones físicas, integrada a la web de tu proyecto.",
   },
 ];
 
@@ -80,7 +132,7 @@ function ServiceCard({
   service,
   reverse = false,
 }: {
-  service: (typeof services)[number];
+  service: Service;
   reverse?: boolean;
 }) {
   return (
@@ -141,18 +193,62 @@ function ServiceCard({
             </ul>
           </div>
 
-          <a
-            href= {service.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center gap-3 border border-violet px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-violet"
-          >
-            Ver demo
-            <span>↗</span>
-          </a>
+          {service.url ? (
+            <a
+              href={service.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-10 inline-flex items-center gap-3 border border-violet px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-violet"
+            >
+              Ver demo
+              <span>↗</span>
+            </a>
+          ) : (
+            <span className="mt-10 inline-flex items-center border border-border px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink-dim">
+              Demo próximamente
+            </span>
+          )}
         </div>
       </div>
     </article>
+  );
+}
+
+function MoreServiceRow({
+  service,
+  index,
+}: {
+  service: ExtraService;
+  index: number;
+}) {
+  return (
+    <AnimateOnScroll delay={index * 80}>
+      <div className="group grid grid-cols-1 gap-4 border-b border-border py-8 transition-colors duration-500 hover:border-violet/30 lg:grid-cols-12 lg:gap-6 lg:py-10">
+        <div className="flex items-start lg:col-span-4">
+          <h4 className="font-display text-xl leading-snug text-ink transition-colors duration-300 group-hover:text-violet">
+            {service.title}
+          </h4>
+        </div>
+
+        <div className="flex items-start lg:col-span-5">
+          <p className="text-body-sm leading-relaxed text-ink-muted">
+            {service.description}
+          </p>
+        </div>
+
+        <div className="flex flex-col items-start gap-3 lg:col-span-3 lg:items-end">
+          {service.price && (
+            <span className="font-mono text-label uppercase tracking-widest text-ink">
+              {service.price}
+            </span>
+          )}
+          <ConsultButton
+            message={`Hola! Me interesa: ${service.title}`}
+            label={service.title}
+          />
+        </div>
+      </div>
+    </AnimateOnScroll>
   );
 }
 
@@ -188,6 +284,35 @@ export function ServicesSection() {
               reverse={index % 2 !== 0}
             />
           ))}
+        </div>
+
+        {/* More services */}
+        <div className="mt-16 lg:mt-24">
+          <AnimateOnScroll>
+            <div className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <h3 className="font-display text-display-md leading-tight text-ink">
+                  Más proyectos creativos
+                </h3>
+              </div>
+              <div className="flex items-end lg:col-span-6 lg:col-start-7">
+                <p className="text-body-sm leading-relaxed text-ink-muted">
+                  También diseñamos webs para espacios, sellos, eventos y
+                  proyectos que necesitan algo a medida.
+                </p>
+              </div>
+            </div>
+          </AnimateOnScroll>
+
+          <div>
+            {moreServices.map((service, index) => (
+              <MoreServiceRow
+                key={service.title}
+                service={service}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
