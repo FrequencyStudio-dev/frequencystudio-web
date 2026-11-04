@@ -1,8 +1,28 @@
-import { SectionLabel } from "@/components/ui";
+import { AnimateOnScroll, ConsultButton } from "@/components/ui";
 import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
+import {
+  WAVE_HEIGHT,
+  WAVE_WIDTH,
+  generatePeaks,
+  peaksToPath,
+} from "@/animations/shared/waveform-data";
+import type { ExtraService } from "@/types";
 
-const services = [
+type ServiceBase = {
+  title: string;
+  description: string;
+  tags: string[];
+  includes: string[];
+  price: string;
+};
+
+type Service =
+  | (ServiceBase & { kind: "web"; image: string; url: string | null })
+  | (ServiceBase & { kind: "content"; waveSeed: number });
+
+const services: Service[] = [
   {
+    kind: "web",
     title: "Landing para artistas musicales y bandas",
     description:
       "Una landing pensada para músicos y bandas que necesitan presentar su proyecto, destacar un lanzamiento y centralizar su información en un solo lugar.",
@@ -20,21 +40,77 @@ const services = [
     price: "Desde USD 320",
   },
   {
-  
-    title: "Portfolio de proyectos visuales",
+    kind: "web",
+    title: "Sitio web completo para artistas",
     description:
-      "Un espacio visual para presentar tus mejores trabajos, destacar tu estilo y mostrar tus proyectos de forma cuidada y profesional",
-    image: "/demos/mockup-portfolio-visual.png",
-    url: "https://art-visual-portfolio-demo.vercel.app/",
-    tags: ["Fotografía", "Editorial", "Artistas visuales"],
+      "Una web multipágina para artistas y bandas con actividad regular, lanzamientos y fechas, que necesitan una presencia más completa y profesional.",
+    // TODO: reemplazar por captura de la demo multipágina cuando esté lista
+    image: "/demos/artist-demo-landing.png",
+    url: null,
+    tags: ["Artistas", "Bandas", "Multipágina"],
     includes: [
-      "Presentación personal o de proyecto",
-      "Selección de trabajos destacados",
-      "información sobre tu práctica y servicios",
+      "Inicio, biografía y discografía",
+      "Fechas y shows",
       "Contacto y redes sociales",
+      "Integración con plataformas de música",
       "Diseño personalizado y adaptado a la identidad del proyecto",
     ],
-    price: "Desde USD 320",
+    price: "Desde USD 600",
+  },
+  {
+    kind: "content",
+    title: "Planificación de contenido",
+    description:
+      "Un plan claro para saber qué publicar, cuándo y con qué objetivo, pensado para sostener la actividad de tu proyecto y acompañar tus lanzamientos.",
+    waveSeed: 11,
+    tags: ["Redes sociales", "Estrategia", "Lanzamientos"],
+    includes: [
+      "Diagnóstico de tus redes y contenido actual",
+      "Objetivos, público y pilares de contenido",
+      "Calendario editorial mensual",
+      "Plan de contenido para lanzamientos",
+      "Seguimiento mensual de métricas y ajustes",
+    ],
+    price: "A consultar",
+  },
+  {
+    kind: "content",
+    title: "Postproducción de contenido audiovisual",
+    description:
+      "Editamos tu material en reels y shorts listos para publicar, con buen sonido y en el formato que pide cada plataforma.",
+    waveSeed: 43,
+    tags: ["Reels", "Shorts", "Edición"],
+    includes: [
+      "Edición de reels y shorts",
+      "Sincronización con la pista y limpieza de sonido",
+      "Versiones para cada plataforma",
+      "Rondas de revisión",
+    ],
+    price: "A consultar",
+  },
+];
+
+const moreServices: ExtraService[] = [
+  {
+    title: "Estudios, salas y docentes",
+    description:
+      "Webs para estudios de grabación, salas de ensayo y docentes de música, con tarifas, equipamiento, portfolio y reservas o agenda.",
+  },
+  {
+    title: "Sellos, colectivos y productoras",
+    description:
+      "Una estructura para varios artistas o proyectos, con roster, lanzamientos y novedades.",
+    price: "Desde USD 1.800",
+  },
+  {
+    title: "Festivales y ciclos",
+    description:
+      "Sitios para festivales y ciclos de eventos, con lineup, horarios, entradas y galería.",
+  },
+  {
+    title: "Tienda de merch y discos",
+    description:
+      "Venta online de merch, vinilos y ediciones físicas, integrada a la web de tu proyecto.",
   },
 ];
 
@@ -76,11 +152,39 @@ function BrowserMockup({
   );
 }
 
+// Placeholder for services without a web demo, until there are real images
+function ContentVisual({
+  title,
+  waveSeed,
+}: {
+  title: string;
+  waveSeed: number;
+}) {
+  return (
+    <div data-rec-reveal className="overflow-hidden border border-border bg-surface">
+      <div className="flex aspect-[16/10] flex-col justify-between p-6 lg:p-10">
+        <span className="font-mono text-[9px] uppercase tracking-widest text-ink-dim">
+          {title}
+        </span>
+
+        <svg
+          viewBox={`0 0 ${WAVE_WIDTH} ${WAVE_HEIGHT}`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          className="h-2/3 w-full fill-violet/70"
+        >
+          <path d={peaksToPath(generatePeaks("vocal", waveSeed))} />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 function ServiceCard({
   service,
   reverse = false,
 }: {
-  service: (typeof services)[number];
+  service: Service;
   reverse?: boolean;
 }) {
   return (
@@ -92,7 +196,11 @@ function ServiceCard({
       >
         {/* Mockup */}
         <div className="lg:col-span-7">
-          <BrowserMockup image={service.image} title={service.title} />
+          {service.kind === "web" ? (
+            <BrowserMockup image={service.image} title={service.title} />
+          ) : (
+            <ContentVisual title={service.title} waveSeed={service.waveSeed} />
+          )}
         </div>
 
         {/* Information */}
@@ -141,18 +249,68 @@ function ServiceCard({
             </ul>
           </div>
 
-          <a
-            href= {service.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center gap-3 border border-violet px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-violet"
-          >
-            Ver demo
-            <span>↗</span>
-          </a>
+          {service.kind === "content" ? (
+            <ConsultButton
+              message={`Hola! Me interesa: ${service.title}`}
+              label={service.title}
+              className="mt-10"
+            />
+          ) : service.url ? (
+            <a
+              href={service.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-10 inline-flex items-center gap-3 border border-violet px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink transition-colors duration-300 hover:bg-violet"
+            >
+              Ver demo
+              <span>↗</span>
+            </a>
+          ) : (
+            <span className="mt-10 inline-flex items-center border border-border px-5 py-3.5 font-mono text-label uppercase tracking-widest text-ink-dim">
+              Demo próximamente
+            </span>
+          )}
         </div>
       </div>
     </article>
+  );
+}
+
+function MoreServiceRow({
+  service,
+  index,
+}: {
+  service: ExtraService;
+  index: number;
+}) {
+  return (
+    <AnimateOnScroll delay={index * 80}>
+      <div className="group grid grid-cols-1 gap-4 border-b border-border py-8 transition-colors duration-500 hover:border-violet/30 lg:grid-cols-12 lg:gap-6 lg:py-10">
+        <div className="flex items-start lg:col-span-4">
+          <h4 className="font-display text-xl leading-snug text-ink transition-colors duration-300 group-hover:text-violet">
+            {service.title}
+          </h4>
+        </div>
+
+        <div className="flex items-start lg:col-span-5">
+          <p className="text-body-sm leading-relaxed text-ink-muted">
+            {service.description}
+          </p>
+        </div>
+
+        <div className="flex flex-col items-start gap-3 lg:col-span-3 lg:items-end">
+          {service.price && (
+            <span className="font-mono text-label uppercase tracking-widest text-ink">
+              {service.price}
+            </span>
+          )}
+          <ConsultButton
+            message={`Hola! Me interesa: ${service.title}`}
+            label={service.title}
+          />
+        </div>
+      </div>
+    </AnimateOnScroll>
   );
 }
 
@@ -173,8 +331,8 @@ export function ServicesSection() {
             </h2>
 
             <p className="max-w-md text-body-sm leading-relaxed text-ink-muted">
-              Explorá nuestras demos y descubrí qué podemos
-              construir para tu proyecto.
+              Webs y contenido para tu proyecto. Explorá nuestras
+              demos o consultanos por lo que necesites.
             </p>
           </div>
         </div>
@@ -188,6 +346,35 @@ export function ServicesSection() {
               reverse={index % 2 !== 0}
             />
           ))}
+        </div>
+
+        {/* More services */}
+        <div className="mt-16 lg:mt-24">
+          <AnimateOnScroll>
+            <div className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-12">
+              <div className="lg:col-span-5">
+                <h3 className="font-display text-display-md leading-tight text-ink">
+                  Más proyectos creativos
+                </h3>
+              </div>
+              <div className="flex items-end lg:col-span-6 lg:col-start-7">
+                <p className="text-body-sm leading-relaxed text-ink-muted">
+                  También diseñamos webs para espacios, sellos, eventos y
+                  proyectos que necesitan algo a medida.
+                </p>
+              </div>
+            </div>
+          </AnimateOnScroll>
+
+          <div>
+            {moreServices.map((service, index) => (
+              <MoreServiceRow
+                key={service.title}
+                service={service}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

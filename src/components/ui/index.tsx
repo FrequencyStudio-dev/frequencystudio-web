@@ -97,6 +97,54 @@ export function VioletDot({ className = "" }: { className?: string }) {
   );
 }
 
+// --- WhatsApp consult ---
+const WHATSAPP = "59894399771";
+
+const waLink = (text: string) =>
+  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+
+function Arrow() {
+  return (
+    <svg className="w-3 h-3" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+      <path
+        d="M2 6h8M6 2l4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function ConsultButton({
+  message,
+  label,
+  variant = "outline",
+  className = "",
+}: {
+  message: string;
+  label: string;
+  variant?: "solid" | "outline";
+  className?: string;
+}) {
+  return (
+    <a
+      href={waLink(message)}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Consultar — ${label}`}
+      className={`inline-flex items-center justify-center gap-2 px-5 py-3 font-mono text-label uppercase tracking-widest transition-all duration-300 ${
+        variant === "solid"
+          ? "bg-violet text-ink hover:bg-violet/80"
+          : "border border-violet/40 text-violet hover:bg-violet/10 hover:border-violet"
+      } ${className}`}
+    >
+      Consultar
+      <Arrow />
+    </a>
+  );
+}
+
 // --- Divider ---
 export function Divider() {
   return (
