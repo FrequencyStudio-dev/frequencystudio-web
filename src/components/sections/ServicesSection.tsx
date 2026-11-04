@@ -1,19 +1,28 @@
 import { AnimateOnScroll, ConsultButton } from "@/components/ui";
 import { SignalDivider } from "@/animations/signal-dividers/SignalDivider";
+import {
+  WAVE_HEIGHT,
+  WAVE_WIDTH,
+  generatePeaks,
+  peaksToPath,
+} from "@/animations/shared/waveform-data";
 import type { ExtraService } from "@/types";
 
-type Service = {
+type ServiceBase = {
   title: string;
   description: string;
-  image: string;
-  url: string | null;
   tags: string[];
   includes: string[];
   price: string;
 };
 
+type Service =
+  | (ServiceBase & { kind: "web"; image: string; url: string | null })
+  | (ServiceBase & { kind: "content"; waveSeed: number });
+
 const services: Service[] = [
   {
+    kind: "web",
     title: "Landing para artistas musicales y bandas",
     description:
       "Una landing pensada para músicos y bandas que necesitan presentar su proyecto, destacar un lanzamiento y centralizar su información en un solo lugar.",
@@ -31,23 +40,7 @@ const services: Service[] = [
     price: "Desde USD 320",
   },
   {
-  
-    title: "Portfolio de proyectos visuales",
-    description:
-      "Un espacio visual para presentar tus mejores trabajos, destacar tu estilo y mostrar tus proyectos de forma cuidada y profesional",
-    image: "/demos/mockup-portfolio-visual.png",
-    url: "https://art-visual-portfolio-demo.vercel.app/",
-    tags: ["Fotografía", "Editorial", "Artistas visuales"],
-    includes: [
-      "Presentación personal o de proyecto",
-      "Selección de trabajos destacados",
-      "información sobre tu práctica y servicios",
-      "Contacto y redes sociales",
-      "Diseño personalizado y adaptado a la identidad del proyecto",
-    ],
-    price: "Desde USD 320",
-  },
-  {
+    kind: "web",
     title: "Sitio web completo para artistas",
     description:
       "Una web multipágina para artistas y bandas con actividad regular, lanzamientos y fechas, que necesitan una presencia más completa y profesional.",
@@ -63,6 +56,37 @@ const services: Service[] = [
       "Diseño personalizado y adaptado a la identidad del proyecto",
     ],
     price: "Desde USD 600",
+  },
+  {
+    kind: "content",
+    title: "Planificación de contenido",
+    description:
+      "Un plan claro para saber qué publicar, cuándo y con qué objetivo, pensado para sostener la actividad de tu proyecto y acompañar tus lanzamientos.",
+    waveSeed: 11,
+    tags: ["Redes sociales", "Estrategia", "Lanzamientos"],
+    includes: [
+      "Diagnóstico de tus redes y contenido actual",
+      "Objetivos, público y pilares de contenido",
+      "Calendario editorial mensual",
+      "Plan de contenido para lanzamientos",
+      "Seguimiento mensual de métricas y ajustes",
+    ],
+    price: "A consultar",
+  },
+  {
+    kind: "content",
+    title: "Postproducción de contenido audiovisual",
+    description:
+      "Editamos tu material en reels y shorts listos para publicar, con buen sonido y en el formato que pide cada plataforma.",
+    waveSeed: 43,
+    tags: ["Reels", "Shorts", "Edición"],
+    includes: [
+      "Edición de reels y shorts",
+      "Sincronización con la pista y limpieza de sonido",
+      "Versiones para cada plataforma",
+      "Rondas de revisión",
+    ],
+    price: "A consultar",
   },
 ];
 
@@ -128,6 +152,34 @@ function BrowserMockup({
   );
 }
 
+// Placeholder for services without a web demo, until there are real images
+function ContentVisual({
+  title,
+  waveSeed,
+}: {
+  title: string;
+  waveSeed: number;
+}) {
+  return (
+    <div data-rec-reveal className="overflow-hidden border border-border bg-surface">
+      <div className="flex aspect-[16/10] flex-col justify-between p-6 lg:p-10">
+        <span className="font-mono text-[9px] uppercase tracking-widest text-ink-dim">
+          {title}
+        </span>
+
+        <svg
+          viewBox={`0 0 ${WAVE_WIDTH} ${WAVE_HEIGHT}`}
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          className="h-2/3 w-full fill-violet/70"
+        >
+          <path d={peaksToPath(generatePeaks("vocal", waveSeed))} />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 function ServiceCard({
   service,
   reverse = false,
@@ -144,7 +196,11 @@ function ServiceCard({
       >
         {/* Mockup */}
         <div className="lg:col-span-7">
-          <BrowserMockup image={service.image} title={service.title} />
+          {service.kind === "web" ? (
+            <BrowserMockup image={service.image} title={service.title} />
+          ) : (
+            <ContentVisual title={service.title} waveSeed={service.waveSeed} />
+          )}
         </div>
 
         {/* Information */}
@@ -193,7 +249,13 @@ function ServiceCard({
             </ul>
           </div>
 
-          {service.url ? (
+          {service.kind === "content" ? (
+            <ConsultButton
+              message={`Hola! Me interesa: ${service.title}`}
+              label={service.title}
+              className="mt-10"
+            />
+          ) : service.url ? (
             <a
               href={service.url}
               target="_blank"
@@ -269,8 +331,8 @@ export function ServicesSection() {
             </h2>
 
             <p className="max-w-md text-body-sm leading-relaxed text-ink-muted">
-              Explorá nuestras demos y descubrí qué podemos
-              construir para tu proyecto.
+              Webs y contenido para tu proyecto. Explorá nuestras
+              demos o consultanos por lo que necesites.
             </p>
           </div>
         </div>
